@@ -1,5 +1,15 @@
 @import url("../vendor/normalize.css");
+@import url("../vendor/fonts/fonts.css");
 @import url("../page/page.css");
 @import url("../header/header.css");
 @import url("../header/__logo/header__logo.css");
+@import url("../content/content.css");
+@import url("../profile/profile.css");
+@import url("../profile/__avatar/profile__avatar.css");
+@import url("../profile/__info/profile__info.css");
+@import url("../profile/__name/profile__name.css");
+@import url("../profile/__profession/profile__profession.css");
+@import url("../profile/__open-popup/profile__open-popup.css");
+@import url("../profile/__add/profile__add.css");
+@import url("../profile/__image-edit/profile__image-edit.css");
 
