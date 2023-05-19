@@ -7,6 +7,17 @@
     max-height: 24px;
     display: grid;
     align-items: center;
+    cursor: pointer;
+}
+
+.profile__open-popup:active {
+    background-color: rgb(14 165 233);
+    transition: all 0.2s;
+}
+
+.profile__open-popup:hover {
+    background-color: rgb(12 74 110);
+    transition: all 0.2s;
 }
 
 @media screen and (max-width: 425px) {

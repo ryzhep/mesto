@@ -1,0 +1,9 @@
+.popup__form {
+    width: 100vw;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+  }

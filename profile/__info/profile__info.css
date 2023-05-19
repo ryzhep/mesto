@@ -1,6 +1,6 @@
 .profile__info{
     color: #fff;
-    outline: 1px solid red;
+    
     display: grid;
     grid-template-columns: auto auto;
 }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
+    <script src="index.js" defer></script>
     <title>Место</title>
 </head>
 
@@ -17,12 +18,71 @@
             <img src="images/avatar.svg" alt="Аватар профиля" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__open-popup"><img src="/images/Button-1.png" alt="изображение карандаша для редактирования" class="profile__image-edit"></button>
-                <p class="profile__profession">Исследователь океана</p>            </div>
+                <button class="profile__open-popup"><img src="/images/Button-1.png"
+                        alt="изображение карандаша для редактирования" class="profile__image-edit"></button>
+                <p class="profile__profession">Исследователь океана</p>
+            </div>
             <button class="profile__add"><img src="/images/Button-2.png" alt="плюсик"></button>
+
+            <div id="edit-popup" class="popup">
+                <div class="popup__content">
+                  <form id="edit-form" class="popup__form">
+                    <h2 class="title">Редактировать имя</h2>
+                    <input id="name-input" type="text" class="input" />
+                    <input id="profession-input" type="text" class="input" />
+                    <button type="submit" class="button">Сохранить</button>
+                  </form>
+          
+                  <button id="close-popup-button" class="popup__close-button"></button>
+                </div>
+              </div>
+
         </div>
+        <div class="elements">
+            <div class="element">
+                <img src="/images/karachaevsk.png" class="element__image" alt="Карачаевск">
+                <div class="element__description">
+                    <p class="element__name">Карачаевск</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img src="/images/elbrus.png" class="element__image" alt="Ельбрус">
+                <div class="element__description">
+                    <p class="element__name">Гора Эльбрус</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img src="/images/dombay.png" class="element__image" alt="Домбай">
+                <div class="element__description">
+                    <p class="element__name">Домбай</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img src="/images/elbrus.png" class="element__image" alt="Эльбрус второй вид">
+                <div class="element__description">
+                    <p class="element__name">Гора Эльбрус</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img src="/images/dombay.png" class="element__image" alt="Домбай второй вид">
+                <div class="element__description">
+                    <p class="element__name">Домбай</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
+            <div class="element">
+                <img src="/images/karachaevsk.png" class="element__image" alt="Карачаево-Черкессия">
+                <div class="element__description">
+                    <p class="element__name">Карачаево-Чeркессия</p>
+                    <div class="element__like"></div>
+                </div>
+            </div>
     </main>
-    <footer class="footer">
+    <footer class="footer">© 2020 Mesto Russia
 
     </footer>
 </body>
