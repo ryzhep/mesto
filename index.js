@@ -37,9 +37,9 @@ editFormEl.addEventListener('submit', function (event) {
 
 
 function openPopup(popupEl) {
-  popupEl.classList.add('popup_is-opened');
+  popupEl.classList.add('popup_opened');
 }
 
 function closePopup(popupEl) {
-  popupEl.classList.remove('popup_is-opened');
+  popupEl.classList.remove('popup_opened');
 }

@@ -1,4 +1,4 @@
-.title{
+.title {
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -6,4 +6,12 @@
     padding: 0;
     margin: 0;
     padding-bottom: 28px;
+}
+
+
+@media screen and (max-width: 425px) {
+    .title {
+        font-size: 18px;
+        padding-bottom: 52px;
+    }
 }

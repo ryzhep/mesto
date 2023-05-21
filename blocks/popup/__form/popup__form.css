@@ -9,8 +9,10 @@
   }
 
   @media screen and (max-width: 425px) {
-    .popup__form{
-        max-width: 282px;
-        max-height: 322px;
+    .popup__form {
+        padding: 25px 22px;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
     }
 }
