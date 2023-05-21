@@ -24,6 +24,10 @@
 @import url("../popup/__close-button/popup__close-button.css");
 @import url("../popup/__form/popup__form.css");
 @import url("../popup/_is-opened/popup_is-opened.css");
+@import url("../title/title.css");
+@import url("../input/input.css");
+@import url("../button/button.css");
+@import url("../popup/__overlay/popup__overlay.css");
 
 
 
