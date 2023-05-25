@@ -1,6 +1,6 @@
 .profile__add {
     border: 2px solid #fff;
-    background-color: #000;
+    background-color:rgba(0,0,0,0);
     margin-left: auto;
     min-width: 150px;
     max-height: 50px;
@@ -10,7 +10,7 @@
 }
 
 .profile__add:hover {
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 

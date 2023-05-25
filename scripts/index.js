@@ -9,31 +9,28 @@ const editFormEl = document.querySelector('#edit-form');
 
 openPopupButtonEl.addEventListener('click', function () {
   openPopup(editPopupEl);
+  nameInputEl.value = pageTitleEl.textContent;
+  professionInputEl.value = pageProfessionEl.textContent;
 });
+
 
 closePopupButtonEl.addEventListener('click', function () {
   closePopup(editPopupEl);
 });
 
-nameInputEl.value = pageTitleEl.textContent;
+
 
 editFormEl.addEventListener('submit', function (event) {
   event.preventDefault();
 
   pageTitleEl.textContent = nameInputEl.value;
-
-  closePopup(editPopupEl);
-});
-
-professionInputEl.value = pageProfessionEl.textContent;
-
-editFormEl.addEventListener('submit', function (event) {
-  event.preventDefault();
-
   pageProfessionEl.textContent = professionInputEl.value;
 
+
+
   closePopup(editPopupEl);
 });
+
 
 
 function openPopup(popupEl) {
