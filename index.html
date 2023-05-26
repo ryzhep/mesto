@@ -18,59 +18,59 @@
             <img src="images/avatar.svg" alt="Аватар профиля" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__open-popup" type="submit"><img src="images/button-1.svg"
+                <button class="profile__open-popup" type="button"><img src="images/button-1.svg"
                         alt="изображение карандаша для редактирования" class="profile__image-edit"></button>
                 <p class="profile__profession">Исследователь океана</p>
             </div>
-            <button class="profile__add" type="submit"><img src="images/button-2.svg" alt="плюсик" class="profile__add-icon"></button>
+            <button class="profile__add" type="button"><img src="images/button-2.svg" alt="плюсик" class="profile__add-icon"></button>
 
         </section>
         <section class="elements">
             <article class="element">
                 <img src="images/karachaevsk.png" class="element__image" alt="Карачаевск">
                 <div class="element__description">
-                    <h3 class="element__name">Карачаевск</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Карачаевск</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="images/elbrus.png" class="element__image" alt="Ельбрус">
                 <div class="element__description">
-                    <h3 class="element__name">Гора Эльбрус</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Гора Эльбрус</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="images/dombay.png" class="element__image" alt="Домбай">
                 <div class="element__description">
-                    <h3 class="element__name">Домбай</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Домбай</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="images/elbrus.png" class="element__image" alt="Эльбрус второй вид">
                 <div class="element__description">
-                    <h3 class="element__name">Гора Эльбрус</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Гора Эльбрус</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="images/dombay.png" class="element__image" alt="Домбай второй вид">
                 <div class="element__description">
-                    <h3 class="element__name">Домбай</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Домбай</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img src="images/karachaevsk.png" class="element__image" alt="Карачаево-Черкессия">
                 <div class="element__description">
-                    <h3 class="element__name">Карачаево-Чeркессия</h3>
-                    <button class="element__like" type="submit"></button>
+                    <h2 class="element__name">Карачаево-Чeркессия</h2>
+                    <button class="element__like" type="button"></button>
                 </div>
             </article>
         </section>
     </main>
-    <footer class="footer"><p>© 2020 Mesto Russia</p>
+    <footer class="footer"><p class="footer__copyright">© 2020 Mesto Russia</p>
 
     </footer>
     <div id="edit-popup" class="popup">
@@ -78,13 +78,13 @@
        
           <form id="edit-form" class="popup__form" name="formEdit">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input id="name-input" type="text" class="popup__input" />
-            <input id="profession-input" type="text" class="popup__input" />
+            <input id="name-input" type="text" class="popup__input" name="имя"/>
+            <input id="profession-input" type="text" class="popup__input" name="описание"/>
             <button type="submit" class="popup__button">Сохранить</button>
           
           </form>
   
-          <button id="close-popup-button" class="popup__close-button" type="submit"></button>
+          <button id="close-popup-button" class="popup__close-button" type="button"></button>
         </div>
       </div>
 </body>

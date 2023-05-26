@@ -8,12 +8,12 @@
     justify-items: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
     .elements{
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 756px) {
     .elements{
         grid-template-columns: repeat(1, 1fr);
         margin: 36px 0 0 0;

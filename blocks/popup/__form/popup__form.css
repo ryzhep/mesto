@@ -2,14 +2,16 @@
     min-width: 430px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 34px 40px;
+    padding: 34px 35px;
     box-sizing: border-box;
+    gap: 20px;
   }
 
-  @media screen and (max-width: 425px) {
+
+  @media screen and (max-width: 767px) {
     .popup__form {
         padding: 25px 22px;
         min-width: 0;
+
     }
 }

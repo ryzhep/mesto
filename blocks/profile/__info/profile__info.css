@@ -1,6 +1,6 @@
 .profile__info{
     color: #fff;
-    
+    max-width: 336px;
     display: grid;
     grid-template-columns: auto auto;
 }
@@ -9,5 +9,6 @@
 @media screen and (max-width: 425px) {
     .profile__info{
         margin: 25px 0 0 0;
+        max-width: 282px;
     }
 }
