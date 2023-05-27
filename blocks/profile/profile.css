@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 756px) {
     .profile{
         margin-top: 44px;
         flex-direction: column;
