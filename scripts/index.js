@@ -59,7 +59,7 @@ function createElement(values){
   const descr = cloneElement.querySelector ('.element__image');
   name.textContent = values.name; //здесь текст должен вставляться из значения name 
   image.src = values.link; //здесь передаем линки для фото
-  descr.alt = values.name;
+  descr.alt = values.name; //прописываю альты по наименованию
 return cloneElement;
 }
 
