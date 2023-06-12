@@ -1,9 +1,9 @@
 const openPopupButtonEl = document.querySelector(".profile__open-popup");
 const openPopupButtonAdd = document.querySelector(".profile__add");
 
-const closePopupButtonEl = document.querySelector("#close-popup-button");
-const closePopupButtonEl2 = document.querySelector("#close-popup-button2");
-const closePopupButtonEl3 = document.querySelector("#close-popup-button3");
+const closePopupButtonEl = document.querySelector("#close-edit-form");
+const closePopupButtonCard = document.querySelector("#close-newcard-form");
+const closePopupButtonImage = document.querySelector("#close-image-form");
 
 const editPopupEl = document.querySelector("#edit-popup");
 const editPopupNewcard = document.querySelector("#newcard-popup");
@@ -22,14 +22,13 @@ const editFormEl = document.querySelector("#edit-form");
 const editFormNewcard = document.querySelector("#newcard-form");
 const editFormImage = document.querySelector("#image-form");
 
-const template = document.querySelector("#template-element");
-const templateContent = template.content;
-const element = templateContent.querySelector(".element");
+const templateElement = document.querySelector("#template-element");
+const templateContent = templateElement.content;
+const elementCard = templateContent.querySelector(".element");
 //константа куда мы будем добавлять
-const elements = document.querySelector(".elements");
+const elementsCards = document.querySelector(".elements");
 const cardLike = document.querySelector(".element__like");
 
-console.log(element);
 
 const initialCards = [
   {
@@ -66,17 +65,14 @@ const initialCards = [
 
 initialCards.forEach(function (item) {
   const cloneElement = createElement(item); // получаем этот элемент и записываем в переменную
-  console.log(cloneElement);
-  elements.prepend(cloneElement); //добавляем в раздел элементы
+  elementsCards.prepend(cloneElement); //добавляем в раздел элементы
 });
 
 function createElement(values) {
-  const cloneElement = element.cloneNode(true);
+  const cloneElement = elementCard.cloneNode(true);
   /* true -глубокое копирование, значит полнгостью новый элемент по шаблону */
-  console.log("new todo", cloneElement);
   const name = cloneElement.querySelector(".element__name");
   const image = cloneElement.querySelector(".element__image");
-  const descr = cloneElement.querySelector(".element__name");
   cloneElement
     .querySelector(".element__like")
     .addEventListener("click", function (evt) {
@@ -85,22 +81,22 @@ function createElement(values) {
 
   const deleteButton = cloneElement.querySelector(".element__delete");
   deleteButton.addEventListener("click", function () {
-    elements.removeChild(cloneElement);
+    elementsCards.removeChild(cloneElement);
   });
 
   image.addEventListener("click", function () {
     openPopup(editPopupImage);
     namePopupInput.textContent = values.name;
     popupImage.src = image.src;
+    popupImage.alt = image.alt;
 
-    console.log(namePopupInput);
   });
 
   name.textContent = values.name; //здесь текст должен вставляться из значения name
   image.src = values.link; //здесь передаем линки для фото
   image.alt = values.descr; //прописываю альты по наименованию
-  console.log(values);
   return cloneElement;
+  
 }
 
 openPopupButtonAdd.addEventListener("click", function () {
@@ -117,11 +113,11 @@ closePopupButtonEl.addEventListener("click", function () {
   closePopup(editPopupEl);
 });
 
-closePopupButtonEl2.addEventListener("click", function () {
+closePopupButtonCard.addEventListener("click", function () {
   closePopup(editPopupNewcard); // закрываем второй попап
 });
 
-closePopupButtonEl3.addEventListener("click", function () {
+closePopupButtonImage.addEventListener("click", function () {
   closePopup(editPopupImage);
 });
 
@@ -130,6 +126,7 @@ editFormEl.addEventListener("submit", function (event) {
   pageTitleEl.textContent = nameInputEl.value;
   pageProfessionEl.textContent = professionInputEl.value;
   closePopup(editPopupEl);
+
 });
 
 editFormImage.addEventListener("submit", function (event) {
@@ -144,9 +141,9 @@ editFormNewcard.addEventListener("submit", function (event) {
   const values = Object.fromEntries(formData);
   const value = values[("name", "link")];
   const cloneElement = createElement(values);
-  console.log(values);
-  elements.prepend(cloneElement);
+  elementsCards.prepend(cloneElement);
   closePopup(editPopupNewcard);
+  form.reset();
 });
 
 function openPopup(popupEl) {
