@@ -77,11 +77,20 @@ function createElement(values) {
   cloneElement.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
    });
+
+   const deleteButton = cloneElement.querySelector('.element__delete');
+   deleteButton.addEventListener('click', function () {
+    elements.removeChild(cloneElement);
+   });
+
+   
   name.textContent = values.name; //здесь текст должен вставляться из значения name
   image.src = values.link; //здесь передаем линки для фото
   image.alt = values.descr; //прописываю альты по наименованию
   console.log(values);
   return cloneElement;
+
+  
   
 }
 
