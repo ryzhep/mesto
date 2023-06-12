@@ -1,26 +1,35 @@
 const openPopupButtonEl = document.querySelector(".profile__open-popup");
-const openPopupButtonEl2 = document.querySelector(".profile__add");
+const openPopupButtonAdd = document.querySelector(".profile__add");
+
 
 const closePopupButtonEl = document.querySelector("#close-popup-button");
 const closePopupButtonEl2 = document.querySelector("#close-popup-button2");
+const closePopupButtonEl3 = document.querySelector("#close-popup-button3");
 
 const editPopupEl = document.querySelector("#edit-popup");
-const editPopupEl2 = document.querySelector("#newcard-popup");
+const editPopupNewcard = document.querySelector("#newcard-popup");
+const editPopupImage = document.querySelector("#image-popup");
 
 const pageTitleEl = document.querySelector(".profile__name");
+
 const pageProfessionEl = document.querySelector(".profile__profession");
 const nameInputEl = document.querySelector("#name-input");
+const nameInputEl2 = document.querySelector("#popup-name");
+const popupImage = document.querySelector("#pupup__image");
+
+
 const professionInputEl = document.querySelector("#profession-input");
 
 const editFormEl = document.querySelector("#edit-form");
-const editFormEl2 = document.querySelector("#newcard-form");
+const editFormNewcard = document.querySelector("#newcard-form");
+const editFormImage = document.querySelector("#image-form");
+
 
 const template = document.querySelector("#template-element");
 const templateContent = template.content;
 const element = templateContent.querySelector(".element");
 //константа куда мы будем добавлять
 const elements = document.querySelector(".elements");
-
 const cardLike = document.querySelector(".element__like");
 
 
@@ -83,7 +92,15 @@ function createElement(values) {
     elements.removeChild(cloneElement);
    });
 
-   
+   image.addEventListener("click", function () {
+    openPopup(editPopupImage); 
+    nameInputEl2.textContent = values.name;
+    popupImage.src=image.src;
+
+    console.log(nameInputEl2);
+
+  });
+  
   name.textContent = values.name; //здесь текст должен вставляться из значения name
   image.src = values.link; //здесь передаем линки для фото
   image.alt = values.descr; //прописываю альты по наименованию
@@ -91,15 +108,16 @@ function createElement(values) {
   return cloneElement;
 
   
-  
 }
 
 
 
-
-openPopupButtonEl2.addEventListener("click", function () {
-  openPopup(editPopupEl2); //открываем второй попап
+openPopupButtonAdd.addEventListener("click", function () {
+  openPopup(editPopupNewcard); 
+  
 });
+
+
 
 openPopupButtonEl.addEventListener("click", function () {
   openPopup(editPopupEl);
@@ -107,13 +125,20 @@ openPopupButtonEl.addEventListener("click", function () {
   professionInputEl.value = pageProfessionEl.textContent;
 });
 
+
+
 closePopupButtonEl.addEventListener("click", function () {
   closePopup(editPopupEl);
 });
 
 closePopupButtonEl2.addEventListener("click", function () {
-  closePopup(editPopupEl2); // закрываем второй попап
+  closePopup(editPopupNewcard); // закрываем второй попап
 });
+
+closePopupButtonEl3.addEventListener("click", function () {
+  closePopup(editPopupImage); 
+});
+
 
 editFormEl.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -122,7 +147,16 @@ editFormEl.addEventListener("submit", function (event) {
   closePopup(editPopupEl);
 });
 
-editFormEl2.addEventListener("submit", function (event) {
+
+editFormImage.addEventListener("submit", function (event) {
+  event.preventDefault();
+  closePopup(editPopupEl);
+});
+
+
+
+
+editFormNewcard.addEventListener("submit", function (event) {
   event.preventDefault(); //чтобы никуда ничего не отправлялось
   const form = event.target; // элемент на котором сработало нажатие кнопки - это форма
   const formData = new FormData(form);
@@ -131,7 +165,7 @@ editFormEl2.addEventListener("submit", function (event) {
   const cloneElement = createElement(values) ;
   console.log(values);
   elements.prepend(cloneElement);
-  closePopup(editPopupEl2);
+  closePopup(editPopupNewcard);
 
 });
 
