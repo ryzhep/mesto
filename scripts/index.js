@@ -21,6 +21,10 @@ const element = templateContent.querySelector(".element");
 //константа куда мы будем добавлять
 const elements = document.querySelector(".elements");
 
+const cardLike = document.querySelector(".element__like");
+
+
+
 console.log(element);
 
 const initialCards = [
@@ -70,12 +74,19 @@ function createElement(values) {
   const image = cloneElement.querySelector(".element__image");
   const descr = cloneElement.querySelector(".element__name");
   //const descr = cloneElement.querySelector(".element__image");
+  cloneElement.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+   });
   name.textContent = values.name; //здесь текст должен вставляться из значения name
   image.src = values.link; //здесь передаем линки для фото
   image.alt = values.descr; //прописываю альты по наименованию
   console.log(values);
   return cloneElement;
+  
 }
+
+
+
 
 openPopupButtonEl2.addEventListener("click", function () {
   openPopup(editPopupEl2); //открываем второй попап
@@ -122,3 +133,6 @@ function openPopup(popupEl) {
 function closePopup(popupEl) {
   popupEl.classList.remove("popup_opened");
 }
+
+
+

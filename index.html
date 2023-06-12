@@ -53,7 +53,7 @@
         <h2 class="popup__title">Новое место</h2>
         <input id="name-card" type="text" class="popup__input" name="name" placeholder="Название"/>
         <input id="image-link" type="text" class="popup__input" name="link" placeholder="Ссылка на картинку"/>
-        <button type="submit" class="popup__button">Создаь</button>
+        <button type="submit" class="popup__button">Создать</button>
       </form>
 
       <button id="close-popup-button2" class="popup__close-button" type="button"></button>
@@ -64,7 +64,9 @@
 
       <template id ="template-element">
         <article class="element">
+            <button class = "element__delete" type="button"></button>
             <img class="element__image">
+    
             <div class="element__description">
                 <h2 class="element__name"></h2>
                 <button class="element__like" type="button"></button>

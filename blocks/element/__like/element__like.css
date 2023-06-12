@@ -15,7 +15,5 @@
     opacity: 0.5;
 }
 
-.element__like:active{
-    background-image: url('../../../images/Union.svg');
-    opacity: 1;
-}
+
+
