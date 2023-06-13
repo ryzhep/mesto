@@ -1,13 +1,13 @@
-const openPopupButtonEl = document.querySelector(".profile__open-popup");
-const openPopupButtonAdd = document.querySelector(".profile__add");
+const buttonOpenEditProfilePopup = document.querySelector(".profile__open-popup");
+const buttonOpenAddCardPopup = document.querySelector(".profile__add");
 
-const closePopupButtonEl = document.querySelector("#close-edit-form");
-const closePopupButtonCard = document.querySelector("#close-newcard-form");
-const closePopupButtonImage = document.querySelector("#close-image-form");
+const buttonCloseEditProfilePopup = document.querySelector("#close-edit-form");
+const buttonCloseAddCardPopup = document.querySelector("#close-newcard-form");
+const buttonCloseImagePopup = document.querySelector("#close-image-form");
 
-const editPopupEl = document.querySelector("#edit-popup");
-const editPopupNewcard = document.querySelector("#newcard-popup");
-const editPopupImage = document.querySelector("#image-popup");
+const popupEditProfile = document.querySelector("#edit-popup");
+const popupAddCard = document.querySelector("#newcard-popup");
+const popupViewImage = document.querySelector("#image-popup");
 
 const pageTitleEl = document.querySelector(".profile__name");
 
@@ -18,9 +18,8 @@ const popupImage = document.querySelector("#pupup__image");
 
 const professionInputEl = document.querySelector("#profession-input");
 
-const editFormEl = document.querySelector("#edit-form");
-const editFormNewcard = document.querySelector("#newcard-form");
-const editFormImage = document.querySelector("#image-form");
+const formEditProfile = document.querySelector("#edit-form");
+const formAddCard = document.querySelector("#newcard-form");
 
 const templateElement = document.querySelector("#template-element");
 const templateContent = templateElement.content;
@@ -28,7 +27,6 @@ const elementCard = templateContent.querySelector(".element");
 //константа куда мы будем добавлять
 const elementsCards = document.querySelector(".elements");
 const cardLike = document.querySelector(".element__like");
-
 
 const initialCards = [
   {
@@ -85,56 +83,48 @@ function createElement(values) {
   });
 
   image.addEventListener("click", function () {
-    openPopup(editPopupImage);
+    openPopup(popupViewImage);
     namePopupInput.textContent = values.name;
     popupImage.src = image.src;
     popupImage.alt = image.alt;
-
   });
 
   name.textContent = values.name; //здесь текст должен вставляться из значения name
   image.src = values.link; //здесь передаем линки для фото
   image.alt = values.descr; //прописываю альты по наименованию
   return cloneElement;
-  
 }
 
-openPopupButtonAdd.addEventListener("click", function () {
-  openPopup(editPopupNewcard);
+buttonOpenAddCardPopup.addEventListener("click", function () {
+  openPopup(popupAddCard);
 });
 
-openPopupButtonEl.addEventListener("click", function () {
-  openPopup(editPopupEl);
+buttonOpenEditProfilePopup.addEventListener("click", function () {
+  openPopup(popupEditProfile);
   nameInputEl.value = pageTitleEl.textContent;
   professionInputEl.value = pageProfessionEl.textContent;
 });
 
-closePopupButtonEl.addEventListener("click", function () {
-  closePopup(editPopupEl);
+buttonCloseEditProfilePopup.addEventListener("click", function () {
+  closePopup(popupEditProfile);
 });
 
-closePopupButtonCard.addEventListener("click", function () {
-  closePopup(editPopupNewcard); // закрываем второй попап
+buttonCloseAddCardPopup.addEventListener("click", function () {
+  closePopup(popupAddCard); // закрываем второй попап
 });
 
-closePopupButtonImage.addEventListener("click", function () {
-  closePopup(editPopupImage);
+buttonCloseImagePopup.addEventListener("click", function () {
+  closePopup(popupViewImage);
 });
 
-editFormEl.addEventListener("submit", function (event) {
+formEditProfile.addEventListener("submit", function (event) {
   event.preventDefault();
   pageTitleEl.textContent = nameInputEl.value;
   pageProfessionEl.textContent = professionInputEl.value;
-  closePopup(editPopupEl);
-
+  closePopup(popupEditProfile);
 });
 
-editFormImage.addEventListener("submit", function (event) {
-  event.preventDefault();
-  closePopup(editPopupEl);
-});
-
-editFormNewcard.addEventListener("submit", function (event) {
+formAddCard.addEventListener("submit", function (event) {
   event.preventDefault(); //чтобы никуда ничего не отправлялось
   const form = event.target; // элемент на котором сработало нажатие кнопки - это форма
   const formData = new FormData(form);
@@ -142,7 +132,7 @@ editFormNewcard.addEventListener("submit", function (event) {
   const value = values[("name", "link")];
   const cloneElement = createElement(values);
   elementsCards.prepend(cloneElement);
-  closePopup(editPopupNewcard);
+  closePopup(popupAddCard);
   form.reset();
 });
 
