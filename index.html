@@ -37,11 +37,13 @@
   <div id="edit-popup" class="popup">
     <div class="popup__container">
 
-      <form id="edit-form" class="popup__form" name="formEdit">
+      <form id="edit-form" class="popup__form " name="formEdit">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input id="name-input" type="text" class="popup__input" name="name" placeholder="Имя" />
+        <input id="name-input" type="text" class="popup__input" name="name" placeholder="Имя" required minlength=2 maxlength=40/>
+        <span class="popup__input-error name-input-error" ></span>
         <input id="profession-input" type="text" class="popup__input" name="description"
-          placeholder="Вид деятельности" />
+          placeholder="Вид деятельности" required minlength=2 maxlength=200/>
+          <span class="popup__input-error profession-input-error" ></span>
         <button type="submit" class="popup__button">Сохранить</button>
 
       </form>
@@ -52,10 +54,12 @@
   <div id="newcard-popup" class="popup">
     <div class="popup__container">
 
-      <form id="newcard-form" class="popup__form" name="formEdit">
+      <form id="newcard-form" class="popup__form" name="formEdit" >
         <h2 class="popup__title">Новое место</h2>
-        <input id="name-card" type="text" class="popup__input" name="name" placeholder="Название" />
-        <input id="image-link" type="text" class="popup__input" name="link" placeholder="Ссылка на картинку" />
+        <input id="name-card" type="text" class="popup__input" name="name" placeholder="Название" required minlength=2 maxlength=30/>
+        <span class="popup__input-error name-card-error" ></span>
+        <input id="image-link" type="url" class="popup__input" name="link" placeholder="Ссылка на картинку" required/>
+        <span class="popup__input-error image-link-error" ></span>
         <button type="submit" class="popup__button">Создать</button>
       </form>
 
