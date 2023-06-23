@@ -76,6 +76,7 @@ buttonOpenEditProfilePopup.addEventListener("click", function () {
 
 buttonCloseEditProfilePopup.addEventListener("click", function () {
   closePopup(popupEditProfile);
+  form.reset();
 });
 
 buttonCloseAddCardPopup.addEventListener("click", function () {
@@ -98,12 +99,12 @@ formAddCard.addEventListener("submit", function (event) {
   const form = event.target; // элемент на котором сработало нажатие кнопки - это форма
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  const value = values[("name", "link")];
   const cloneElement = createElement(values);
   elementsCards.prepend(cloneElement);
-  closePopup(popupAddCard);
   form.reset();
-  
+  closePopup(popupAddCard);
+  const submitButton = formAddCard.querySelector('.popup__button');
+  submitButton.classList.add(validationConfig.inactiveButtonClass);
 });
 
 function openPopup(popupEl) {
@@ -135,3 +136,4 @@ const closePopupOverlay=(event)=>{
       closePopup(openedPopup);
     };
 };
+
