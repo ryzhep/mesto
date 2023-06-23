@@ -6,32 +6,28 @@ const validationConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 };
-const formSelector = document.querySelector(validationConfig.formSelector);
-const inputSelector = formSelector.querySelector(
-  validationConfig.inputSelector
-);
-const formError = formSelector.querySelector(`.${inputSelector.id}-error`);
 
-const showInputError = (formSelector, inputElement, errorMessage) => {
-  const errorClass = formSelector.querySelector(`.${inputElement.id}-error`);
+
+const showInputError = (validationConfig, inputElement, errorMessage) => {
+  const errorClass = validationConfig.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorClass.textContent = errorMessage;
   errorClass.classList.add(validationConfig.errorClass);
 };
 
 //убирание класса и убирание ошибки
-const hideInputError = (formSelector, inputElement) => {
-  const errorClass = formSelector.querySelector(`.${inputElement.id}-error`);
+const hideInputError = (validationConfig, inputElement) => {
+  const errorClass = validationConfig.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(validationConfig.inputErrorClass);
   errorClass.classList.remove(validationConfig.errorClass);
   errorClass.textContent = "";
 };
 
-const checkInputValidity = (formSelector, inputElement) => {
+const checkInputValidity = (validationConfig, inputElement) => {
   if (!inputElement.validity.valid) {
-    showInputError(formSelector, inputElement, inputElement.validationMessage);
+    showInputError(validationConfig, inputElement, inputElement.validationMessage);
   } else {
-    hideInputError(formSelector, inputElement);
+    hideInputError(validationConfig, inputElement);
   }
 };
 const inactiveButtonClass = (inputList, submitButtonSelector) => {

@@ -66,13 +66,10 @@ function createElement(values) {
 
 buttonOpenAddCardPopup.addEventListener("click", function () {
    openPopup(popupAddCard);
-}
-
-);
+});
 
 buttonOpenEditProfilePopup.addEventListener("click", function () {
   openPopup(popupEditProfile);
-  enableValidation (popupEditProfile);
   nameInputEl.value = pageTitleEl.textContent;
   professionInputEl.value = pageProfessionEl.textContent;
 });
@@ -111,25 +108,30 @@ formAddCard.addEventListener("submit", function (event) {
 
 function openPopup(popupEl) {
   popupEl.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupEsc);
+  popupEl.addEventListener("mousedown", closePopupOverlay);
 }
 
 function closePopup(popupEl) {
   popupEl.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupEsc);
+  popupEl.removeEventListener("mousedown", closePopupOverlay);
+  
 }
 
 //закрытие попапов
-const popups = document.querySelectorAll(".popup");
 //закрытие через escape
-popups.forEach(function (popup) {
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closePopup(popup);
-    }
-  });
-  //закрытие через overlay
-  popup.addEventListener("click", (evt) => {
-    if (evt.currentTarget === evt.target) {
-      closePopup(popup);
-    }
-  });
-});
+const closePopupEsc=(event)=>{
+  if (event.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+//закрытие через overlay
+const closePopupOverlay=(event)=>{
+    if (event.currentTarget === event.target) {
+      const openedPopup = document.querySelector('.popup_opened');
+      closePopup(openedPopup);
+    };
+};
