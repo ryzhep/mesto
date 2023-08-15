@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
-import {validationConfig, FormValidator } from "./FormValidator.js";
-
+import { validationConfig, FormValidator } from "./FormValidator.js";
+import { initialCards } from "./constants.js";
 
 const buttonOpenEditProfilePopup = document.querySelector(
   ".profile__open-popup"
@@ -35,10 +35,8 @@ const elementsCards = document.querySelector(".elements");
 //Валидация
 const formProfileValid = new FormValidator(validationConfig, popupEditProfile);
 formProfileValid.enableValidation();
-console.log(formProfileValid);
 const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
-console.log(formAddNewCardValid);
 
 //Открытие попапа добавления карточки
 buttonOpenAddCardPopup.addEventListener("click", function () {
@@ -48,7 +46,6 @@ buttonOpenAddCardPopup.addEventListener("click", function () {
 //Закрытие попапа добавления карточки
 buttonCloseAddCardPopup.addEventListener("click", function () {
   closePopup(popupAddCard); // закрываем второй попап
-  
 });
 
 //Открытие попапа изменения карточки
@@ -126,5 +123,3 @@ export const closePopupOverlay = (event) => {
     closePopup(openedPopup);
   }
 };
-
-
