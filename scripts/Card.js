@@ -6,20 +6,18 @@ import {
 } from "./index.js";
 
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link) {
     this._name = name;
     this._link = link;
-    this._templateSelector = templateSelector;
   }
 
   /* Приватный метод найдёт template-элемент с id template-element, извлечёт его содержимое, в содержимом найдёт элемент с классом element,
 клонирует его, вернёт клонированный элемент.*/
   _getTemplate() {
-    const cardElement = document
+    return document
       .querySelector("#template-element")
       .content.querySelector(".element")
       .cloneNode(true);
-    return cardElement;
   }
 
   _setData() {
@@ -53,12 +51,18 @@ export class Card {
 
     //открывается картинка при клике
     this._cardImage.addEventListener("click", () => {
-      openPopup(popupViewImage);
-      namePopupInput.textContent = this._name;
-      popupImage.src = this._link;
-      popupImage.alt = this._name;
+      this._сlickImage();
     });
   }
+
+  //открыть картинку
+  _сlickImage() {
+    openPopup(popupViewImage);
+    namePopupInput.textContent = this._name;
+    popupImage.src = this._link;
+    popupImage.alt = this._name;
+  }
+  
   //удаление карточки
   _DeleteCard() {
     this._element.remove(); //удаление из разметки
