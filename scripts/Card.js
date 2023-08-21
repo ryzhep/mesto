@@ -6,18 +6,19 @@ import {
 } from "./index.js";
 
 export class Card {
-  constructor(name, link) {
+  constructor(name, link, templateSelector) {
     this._name = name;
     this._link = link;
+    this._templateSelector=templateSelector;
   }
 
   /* Приватный метод найдёт template-элемент с id template-element, извлечёт его содержимое, в содержимом найдёт элемент с классом element,
 клонирует его, вернёт клонированный элемент.*/
   _getTemplate() {
-    return document
-      .querySelector("#template-element")
+    const cardTempate= document.querySelector(this._templateSelector)
       .content.querySelector(".element")
       .cloneNode(true);
+      return cardTempate;
   }
 
   _setData() {
@@ -62,7 +63,7 @@ export class Card {
     popupImage.src = this._link;
     popupImage.alt = this._name;
   }
-  
+
   //удаление карточки
   _DeleteCard() {
     this._element.remove(); //удаление из разметки
