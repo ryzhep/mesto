@@ -85,6 +85,7 @@ function formAddCardSubmit(event) {
   closePopup(popupAddCard);
   const submitButton = formAddCard.querySelector('.popup__button'); 
   submitButton.classList.add(validationConfig.inactiveButtonClass); 
+  submitButton.setAttribute("disabled", "true");
 }
 
 // Рендер карточки

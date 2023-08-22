@@ -52,12 +52,12 @@ export class Card {
 
     //открывается картинка при клике
     this._cardImage.addEventListener("click", () => {
-      this._сlickImage();
+      this._clickImage();
     });
   }
 
   //открыть картинку
-  _сlickImage() {
+  _clickImage() {
     openPopup(popupViewImage);
     namePopupInput.textContent = this._name;
     popupImage.src = this._link;

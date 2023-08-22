@@ -101,4 +101,3 @@ export class FormValidator {
     this._inactiveButtonClass();
   }
 }
-
