@@ -24,7 +24,7 @@ export class FormValidator {
       (event) => event.preventDefault() //чтобы никуда ничего не отправлялось
     );
     this._setEventListeners();
-    
+    this._resetValidation();
   }
 
   // показывать ошибку (красные поля) - отображение сообщения об ошибке для указанного inputElement
@@ -89,7 +89,8 @@ export class FormValidator {
   }
 
   //убрать валидацию
-  resetValidation() {
+  _resetValidation() {
+    this._submitButtonSelector.setAttribute('disabled', 'true');
     this._inputList.forEach((inputElement) => {
       this._hideInputError(
         inputElement,

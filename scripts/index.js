@@ -39,11 +39,6 @@ const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
 
 
-const formValidatorAdd = new FormValidator(validationConfig, popupAddCard); // создаем экземпляр класса FormValidator с переданным элементом формы
-formValidatorAdd.resetValidation();
-const formValidatorEdit = new FormValidator(validationConfig,popupEditProfile);
-formValidatorEdit.resetValidation();
-
 buttonOpenAddCardPopup.addEventListener("click", function () {
   openPopup(popupAddCard);
 });
@@ -85,14 +80,11 @@ function formAddCardSubmit(event) {
   const form = event.target; // элемент на котором сработало нажатие кнопки - это форма
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-
-  const formValidator = new FormValidator(validationConfig, form); // создаем экземпляр класса FormValidator
-  if (formValidator._inputList.some((inputElement) => !inputElement.validity.valid)) { // проверяем, есть ли невалидные поля
-    return; // если есть невалидные поля, ничего не делаем
-  }
   renderTodoCard(values);
   form.reset();
   closePopup(popupAddCard);
+  const submitButton = formAddCard.querySelector('.popup__button'); 
+  submitButton.classList.add(validationConfig.inactiveButtonClass); 
 }
 
 // Рендер карточки
@@ -107,6 +99,7 @@ initialCards.forEach((todoData) => {
 
 //закрытие попапов
 export function openPopup(popupEl) {
+  
   popupEl.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
   popupEl.addEventListener("mousedown", closePopupOverlay);
