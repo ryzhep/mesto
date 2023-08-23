@@ -42,7 +42,7 @@ export class Card {
   _setEventListeners() {
     //удаляет при клике
     this._cardDeleteButton.addEventListener("click", () => {
-      this._DeleteCard();
+      this._deleteCard();
     });
 
     //ставит лайки при клике
@@ -65,7 +65,7 @@ export class Card {
   }
 
   //удаление карточки
-  _DeleteCard() {
+  _deleteCard() {
     this._element.remove(); //удаление из разметки
     this._element = null; // удаление из памяти
   }

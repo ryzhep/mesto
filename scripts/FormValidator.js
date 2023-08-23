@@ -67,18 +67,15 @@ export class FormValidator {
           this._errorClass,
           this._inputErrorClass
         );
-        this._inactiveButtonClass();
+        this._toggleButtonState();
       });
     });
   }
-  
-  _inactiveButtonClass() {
+
+  _toggleButtonState() {
     if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
-      this._submitButtonSelector.classList.add(
-        this._validationConfig.inactiveButtonClass
-      );
-      this._submitButtonSelector.setAttribute("disabled", "true");
+      this.disableSubmitButton();
     } else {
       // иначе сделай кнопку активной
       this._submitButtonSelector.classList.remove(
@@ -90,7 +87,7 @@ export class FormValidator {
 
   //убрать валидацию
   _resetValidation() {
-    this._submitButtonSelector.setAttribute('disabled', 'true');
+    this._submitButtonSelector.setAttribute("disabled", "true");
     this._inputList.forEach((inputElement) => {
       this._hideInputError(
         inputElement,
@@ -98,6 +95,13 @@ export class FormValidator {
         this._inputErrorClass
       );
     });
-    this._inactiveButtonClass();
+    this._toggleButtonState();
+  }
+  
+  disableSubmitButton() {
+    this._submitButtonSelector.setAttribute("disabled", "true");
+    this._submitButtonSelector.classList.add(
+      this._validationConfig.inactiveButtonClass
+    );
   }
 }
