@@ -35,10 +35,10 @@ const elementsCards = document.querySelector(".elements");
 //Валидация
 const formProfileValid = new FormValidator(validationConfig, popupEditProfile);
 formProfileValid.enableValidation();
-formProfileValid.disableSubmitButton();
+
 const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
-formAddNewCardValid.disableSubmitButton();
+
 
 
 buttonOpenAddCardPopup.addEventListener("click", function () {
@@ -85,8 +85,7 @@ function formAddCardSubmit(event) {
   renderTodoCard(values);
   form.reset();
   closePopup(popupAddCard);
-  const submitButton = formAddCard.querySelector('.popup__button'); 
-  submitButton.disableSubmitButton();
+  formAddNewCardValid.disableSubmitButton();
 }
 
 // Рендер карточки
@@ -101,11 +100,9 @@ initialCards.forEach((todoData) => {
 
 //закрытие попапов
 export function openPopup(popupEl) {
-  formAddNewCardValid.disableSubmitButton();
   popupEl.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
   popupEl.addEventListener("mousedown", closePopupOverlay);
-  
 }
 
 function closePopup(popupEl) {
