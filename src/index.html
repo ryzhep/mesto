@@ -3,19 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
-    <script type="module" src="scripts/index.js" defer></script>
+
     <title>Место</title>
   </head>
 
   <body class="page">
     <header class="header">
-      <img src="images/Vector.svg" alt="Логотип место" class="header__logo" />
+      <img src="<%=require('./images/Vector.svg')%>" alt="Логотип место" class="header__logo" />
     </header>
     <main class="content">
       <section class="profile">
         <img
-          src="images/avatar.svg"
+          src="<%=require('./images/avatar.svg')%>"
           alt="Аватар профиля"
           class="profile__avatar"
         />
@@ -23,7 +22,7 @@
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button class="profile__open-popup" type="button">
             <img
-              src="images/button-1.svg"
+              src="<%=require('./images/button-1.svg')%>"
               alt="изображение карандаша для редактирования"
               class="profile__image-edit"
             />
@@ -32,7 +31,7 @@
         </div>
         <button class="profile__add" type="button">
           <img
-            src="images/button-2.svg"
+            src="<%=require('./images/button-2.svg')%>"
             alt="плюсик"
             class="profile__add-icon"
           />
