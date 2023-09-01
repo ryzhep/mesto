@@ -2,6 +2,7 @@ import '../pages/index.css';
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { initialCards, validationConfig } from "./constants.js";
+import { Section } from './Section.js';
 
 const buttonOpenEditProfilePopup = document.querySelector(
   ".profile__open-popup"
@@ -41,7 +42,6 @@ const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
 
 
-
 buttonOpenAddCardPopup.addEventListener("click", function () {
   openPopup(popupAddCard);
 });
@@ -65,7 +65,7 @@ formEditProfile.addEventListener("submit", editProfilePopupSubmit);
 
 formAddCard.addEventListener("submit", formAddCardSubmit);
 
-function editProfilePopupOpen(event) {
+function editProfilePopupOpen() {
   openPopup(popupEditProfile);
   nameInputEl.value = pageTitleEl.textContent;
   professionInputEl.value = pageProfessionEl.textContent;
@@ -84,20 +84,33 @@ function formAddCardSubmit(event) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
   renderTodoCard(values);
+  
   form.reset();
   closePopup(popupAddCard);
   formAddNewCardValid.disableSubmitButton();
 }
 
-// Рендер карточки
+//Рендер карточки
+const renderTodoCard = () => { 
+  const CardList = new Section({ 
+    items: initialCards, 
+    renderer: (item)=>{
+      const card = new Card(item.name, item.link, "#template-element");
+      return elementsCards.prepend(card.getView());}
+    },
+     '.elements');
+     CardList.renderItems();
+  }
+
+ /*  // Рендер карточки
 const renderTodoCard = (item) => {
   const card = new Card(item.name, item.link, "#template-element");
   elementsCards.prepend(card.getView());
 };
+*/
 
-initialCards.forEach((todoData) => {
-  renderTodoCard(todoData);
-});
+  renderTodoCard();
+
 
 //закрытие попапов
 export function openPopup(popupEl) {
@@ -121,11 +134,16 @@ export const closePopupEsc = (event) => {
   
 };
 
+
 //закрытие через overlay
 export const closePopupOverlay = (event) => {
   if (event.currentTarget === event.target) {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
-
 };
+
+
+
+
+
