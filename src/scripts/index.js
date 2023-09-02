@@ -84,7 +84,6 @@ function formAddCardSubmit(event) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
   renderTodoCard(values);
-  
   form.reset();
   closePopup(popupAddCard);
   formAddNewCardValid.disableSubmitButton();
