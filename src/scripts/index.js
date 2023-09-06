@@ -38,14 +38,13 @@ formProfileValid.enableValidation();
 const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
 
-
 //--ПОПАП СОЗДАНИЯ КАРТОЧКИ
-const popupWithFormAdd = new PopupWithForm('#newcard-popup', (values) => {
-  const nameInput = values['name-name'];
-  const urlInput = values['image-link'];
+const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
+  const nameInput = values["name-name"];
+  const urlInput = values["image-link"];
   const cardElement = renderTodoCard(nameInput, urlInput);
   section.addItem(cardElement);
-});        
+});
 buttonOpenAddCardPopup.addEventListener("click", function () {
   popupWithFormAdd.open();
 });
@@ -67,7 +66,6 @@ function formAddCardSubmit(event) {
 }
 popupWithFormAdd.setEventListeners();
 
-
 //--ПОПАП ПРОСМОТРА ИЗОБРАЖЕНИЯ--
 const popupWithImage = new PopupWithImage("#image-popup");
 buttonCloseImagePopup.addEventListener("click", function () {
@@ -82,7 +80,10 @@ function openPopupImage(image, name) {
 popupWithImage.setEventListeners();
 
 //--ПОПАП ПРОФЕССИИ
-const popupWithFormEdit = new PopupWithForm('#edit-popup', editProfilePopupSubmit);
+const popupWithFormEdit = new PopupWithForm(
+  "#edit-popup",
+  editProfilePopupSubmit
+);
 
 buttonCloseEditProfilePopup.addEventListener("click", function () {
   popupWithFormEdit.close();
@@ -90,21 +91,18 @@ buttonCloseEditProfilePopup.addEventListener("click", function () {
 
 buttonOpenEditProfilePopup.addEventListener("click", editProfilePopupOpen);
 
-
 formEditProfile.addEventListener("submit", editProfilePopupSubmit);
 const userInfo = new UserInfo({
-  userName: '.profile__name',
-  userInfo: '.profile__profession'
-});  
+  userName: ".profile__name",
+  userInfo: ".profile__profession",
+});
 
 function editProfilePopupSubmit(inputValues) {
- 
-    const name = inputValues['name-input'];
-    const info = inputValues['profession-input'];
-    userInfo.setUserInfo({ name, info });
-    popupWithFormEdit.close();
-  }
-
+  const name = inputValues["name-input"];
+  const info = inputValues["profession-input"];
+  userInfo.setUserInfo({ name, info });
+  popupWithFormEdit.close();
+}
 
 function editProfilePopupOpen() {
   popupWithFormEdit.open();
@@ -143,6 +141,3 @@ const section = new Section(
 );
 
 section.renderItems();
-
-
-

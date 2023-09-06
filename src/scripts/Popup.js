@@ -26,19 +26,19 @@ export default class Popup {
 
   _closePopupOverlay(event) {
     if (event.currentTarget === event.target) {
-      this._popup = document.querySelector(".popup_opened"); 
-      this.close(); 
-    } 
-  }; 
+      this._popup = document.querySelector(".popup_opened");
+      this.close();
+    }
+  }
 
   setEventListeners() {
-//закрытие по оверлею
-    this._popup.addEventListener('mousedown', evt => {
-      if (evt.target.classList.contains('popup_opened')) {
+    //закрытие по оверлею
+    this._popup.addEventListener("mousedown", (evt) => {
+      if (evt.target.classList.contains("popup_opened")) {
         this.close();
       }
-          //обработчик события привязан к кнопке закрытия
-      if (evt.target.classList.contains('popup__close-button')) {
+      //обработчик события привязан к кнопке закрытия
+      if (evt.target.classList.contains("popup__close-button")) {
         this.close();
       }
     });
