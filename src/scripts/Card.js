@@ -6,19 +6,25 @@ import {
 } from "./index.js";
 
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
-    this._templateSelector=templateSelector;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
+  _handleImageClick() {
+    this._handleCardClick(this._link, this._name);
+  }
+  
   /* Приватный метод найдёт template-элемент с id template-element, извлечёт его содержимое, в содержимом найдёт элемент с классом element,
 клонирует его, вернёт клонированный элемент.*/
   _getTemplate() {
-    const cardTempate= document.querySelector(this._templateSelector)
+    const cardTempate = document
+      .querySelector(this._templateSelector)
       .content.querySelector(".element")
       .cloneNode(true);
-      return cardTempate;
+    return cardTempate;
   }
 
   _setData() {
@@ -50,18 +56,9 @@ export class Card {
       this._handleLikeIcon();
     });
 
-    //открывается картинка при клике
-    this._cardImage.addEventListener("click", () => {
-      this._clickImage();
+    this._cardImage.addEventListener('click', () => { 
+      this._handleImageClick() 
     });
-  }
-
-  //открыть картинку
-  _clickImage() {
-    openPopup(popupViewImage);
-    namePopupInput.textContent = this._name;
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
   }
 
   //удаление карточки
