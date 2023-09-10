@@ -9,11 +9,8 @@ export class FormValidator {
     );
     this._inputErrorClass = this._validationConfig.inputErrorClass;
     this._errorClass = this._validationConfig.errorClass;
-    this._submitButtonSelector = formElement.querySelector(
+    this._submitButton = formElement.querySelector(
       this._validationConfig.submitButtonSelector
-    );
-    this._inactiveButton = formElement.querySelector(
-      this._validationConfig.inactiveButtonClass
     );
   }
 
@@ -78,16 +75,16 @@ export class FormValidator {
       this.disableSubmitButton();
     } else {
       // иначе сделай кнопку активной
-      this._submitButtonSelector.classList.remove(
+      this._submitButton.classList.remove(
         this._validationConfig.inactiveButtonClass
       );
-      this._submitButtonSelector.removeAttribute("disabled");
+      this._submitButton.removeAttribute("disabled");
     }
   }
 
   //убрать валидацию
   _resetValidation() {
-    this._submitButtonSelector.setAttribute("disabled", "true");
+    this.disableSubmitButton();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(
         inputElement,
@@ -99,8 +96,8 @@ export class FormValidator {
   }
   
   disableSubmitButton() {
-    this._submitButtonSelector.setAttribute("disabled", "true");
-    this._submitButtonSelector.classList.add(
+    this._submitButton.setAttribute("disabled", "true");
+    this._submitButton.classList.add(
       this._validationConfig.inactiveButtonClass
     );
   }

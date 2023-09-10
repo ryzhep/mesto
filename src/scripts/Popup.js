@@ -31,16 +31,15 @@ export default class Popup {
     }
   }
 
-  setEventListeners() {
-    //закрытие по оверлею
-    this._popup.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("popup_opened")) {
-        this.close();
-      }
-      //обработчик события привязан к кнопке закрытия
-      if (evt.target.classList.contains("popup__close-button")) {
-        this.close();
-      }
-    });
-  }
+  setEventListeners() { 
+    //закрытие по оверлею 
+    this._popup.addEventListener("mousedown", (evt) => { 
+      //обработчик события привязан к кнопке закрытия 
+      if (evt.target.classList.contains("popup__close-button")) { 
+        this.close(); 
+      } 
+    }); 
+} 
+
+
 }

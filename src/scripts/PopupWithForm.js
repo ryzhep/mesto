@@ -4,7 +4,7 @@ export class PopupWithForm extends Popup {
   constructor(popupSelector, submitCallback) {
     super(popupSelector);
     this._submitCallback = submitCallback;
-    this._form = document.querySelector(".popup__form");
+    this._form = this._popup.querySelector('.popup__form');
     this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
   }
 
@@ -16,13 +16,12 @@ export class PopupWithForm extends Popup {
       inputValues[input.name] = input.value //input.name представляет имя текущего поля, а input.value - его текущее значение;
     });
     return inputValues;
-
   }
 //перезаписывает родительский метод и добавляет обработчик сабмита формы.
 //Будет вызываться переданный колбэк submitButton, передавая в него собранные данные формы
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener('submit', evt => {
+    this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
       this._submitCallback(inputValues);
@@ -33,4 +32,5 @@ export class PopupWithForm extends Popup {
     this._form.reset();
     super.close();
   }
+
 }
