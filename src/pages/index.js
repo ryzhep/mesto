@@ -1,23 +1,24 @@
 import "../pages/index.css";
 import { Card } from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
-import { initialCards,validationConfig} from "../utils/constants.js";
+import {
+  initialCards,
+  validationConfig,
+  buttonOpenEditProfilePopup,
+  buttonOpenAddCardPopup,
+  buttonCloseEditProfilePopup,
+  buttonCloseImagePopup,
+  popupEditProfile,
+  popupAddCard,
+  inputName,
+  inputDescription,
+} from "../utils/constants.js";
 import { Section } from "../scripts/Section.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 
- const buttonOpenEditProfilePopup = document.querySelector(".profile__open-popup");
- const buttonOpenAddCardPopup = document.querySelector(".profile__add");
- const buttonCloseEditProfilePopup = document.querySelector("#close-edit-form");
- const buttonCloseImagePopup = document.querySelector("#close-image-form");
- const popupEditProfile = document.querySelector("#edit-popup");
- const popupAddCard = document.querySelector("#newcard-popup");
- const inputName = document.querySelector('input[name="name"]');
- const inputDescription = document.querySelector('input[name="description"]');
-
-
- //Валидация
+//Валидация
 const formProfileValid = new FormValidator(validationConfig, popupEditProfile);
 formProfileValid.enableValidation();
 
