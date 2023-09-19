@@ -30,6 +30,7 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
   const nameInput = values["name"];
   const urlInput = values["link"];
 
+
 //апи пост на добавление карточки
   api.apiAddNewCard(nameInput, urlInput)
     .then((data) => {
@@ -113,7 +114,7 @@ function editProfilePopupSubmit(inputValues) {
   editApiUser
     .editProfile(name, info)
     .then(() => {
-      userInfo.setUserInfo({ name, info });
+      userInfo.setUserInfo(name, info );
       popupWithFormEdit.close();
     })
     .catch((error) => {
@@ -168,10 +169,6 @@ api
     console.log(error);
   });
 
-//Загрузка информации о пользователе с сервера
-const profileAvatar = document.querySelector(".profile__avatar");
-const nameProfileElement = document.getElementById(".profile__name");
-const professionElement = document.getElementById(".profile__profession");
 
 const infoUser = {
   url: "https://nomoreparties.co/v1/cohort-75/users/me ",
@@ -184,9 +181,7 @@ const apiUser = new Api(infoUser);
 apiUser
   .getInfoUser()
   .then((userData) => {
-    profileAvatar.src = userData.avatar;
-    nameProfileElement.textContent = userData.name;
-    professionElement.textContent = userData.about;
+    userInfo.setUserInfo(userData.name, userData.about);
   })
   .catch((error) => {
     console.log(error);

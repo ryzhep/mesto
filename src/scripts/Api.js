@@ -45,14 +45,13 @@ export class Api {
   }
 
   //Добавление новой карточки
-  apiAddNewCard(name, link, likes){
+  apiAddNewCard(name, link){
     return this._sendRequest(`${this._url}`, {
         method: "POST",
         headers: this._headers,
         body: JSON.stringify({
             name: name,
             link: link,
-            likes: likes
         })
       });
   }

@@ -12,7 +12,7 @@ export class UserInfo {
     };
   }
 
-  setUserInfo({ name, info }) {
+  setUserInfo( name, info ) {
     this._nameSelector.textContent = name;
     this._infoSelector.textContent = info;
   }
