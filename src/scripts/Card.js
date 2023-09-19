@@ -1,13 +1,22 @@
+import { PopupDeleteCard } from "../scripts/PopupDeleteCard.js";
+import {buttonDeletePopup} from "../utils/constants.js";
+const popupWithComfirm = new PopupDeleteCard("#deletecard-popup",);
+buttonDeletePopup.addEventListener("click", function () {
+  popupWithComfirm.close();
+});
+
 export class Card {
-  constructor({name, link}, templateSelector, handleCardClick) {
+  constructor({name, link, likes}, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._likes = likes.length;//получить количество лайков
+
   }
 
   _handleImageClick() {
-    this._handleCardClick(this._link, this._name);
+    this._handleCardClick(this._link, this._name, this._likes);
   }
   
   /* Приватный метод найдёт template-элемент с id template-element, извлечёт его содержимое, в содержимом найдёт элемент с классом element,
@@ -28,6 +37,8 @@ export class Card {
     this._cardImage.alt = this._name;
     this._cardDeleteButton = this._element.querySelector(".element__delete");
     this._cardLike = this._element.querySelector(".element__like");
+    this._usersLikesElement = this._element.querySelector('.element__likes-counter');
+    this._usersLikesElement.textContent = this._likes;
   }
 
   getView() {
@@ -41,6 +52,7 @@ export class Card {
   _setEventListeners() {
     //удаляет при клике
     this._cardDeleteButton.addEventListener("click", () => {
+
       this._deleteCard();
     });
 
@@ -56,12 +68,15 @@ export class Card {
 
   //удаление карточки
   _deleteCard() {
+    popupWithComfirm.open();
     this._element.remove(); //удаление из разметки
     this._element = null; // удаление из памяти
   }
 
-  //cтавить лайки
-  _handleLikeIcon() {
-    this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
-  }
+
+    //cтавить лайки
+    _handleLikeIcon() {
+      this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
+    }   
 }
+

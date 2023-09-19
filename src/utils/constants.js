@@ -46,6 +46,7 @@ export const buttonOpenEditProfilePopup = document.querySelector(".profile__open
 export const buttonOpenAddCardPopup = document.querySelector(".profile__add");
 export const buttonCloseEditProfilePopup = document.querySelector("#close-edit-form");
 export const buttonCloseImagePopup = document.querySelector("#close-image-form");
+export const buttonDeletePopup = document.querySelector("#close-delete-form");
 export const popupEditProfile = document.querySelector("#edit-popup");
 export const popupAddCard = document.querySelector("#newcard-popup");
 export const inputName = document.querySelector('input[name="name"]');

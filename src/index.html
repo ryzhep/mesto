@@ -123,6 +123,19 @@
         ></button>
       </div>
     </div>
+    <div id="deletecard-popup" class="popup ">
+      <div class="popup__container">
+        <form id="deletecard-form" class="popup__form" name="deleteCard" novalidate>
+          <button
+          id="close-delete-form"
+          class="popup__close-button"
+          type="button"
+        ></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" class="popup__submit-button">Да</button>
+        </form>
+      </div>
+    </div>
 
     <template id="template-element">
       <article class="element">
@@ -130,7 +143,10 @@
         <img class="element__image" />
         <div class="element__description">
           <h2 class="element__name"></h2>
+          <div class="element__like-elements">
           <button class="element__like" type="button"></button>
+          <p class="element__likes-counter">0</p>
+          </div>
         </div>
       </article>
     </template>
