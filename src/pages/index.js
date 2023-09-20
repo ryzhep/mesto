@@ -34,7 +34,7 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
 //апи пост на добавление карточки
   api.apiAddNewCard(nameInput, urlInput)
     .then((data) => {
-      const cardElement = createCard(data.name, data.link, data.likes.length);
+      const cardElement = createCard(data.name, data.link, data.likes.length, data.owner._id);
       section.addItem(cardElement);
       popupWithFormAdd.close();
     })
@@ -50,17 +50,20 @@ buttonOpenAddCardPopup.addEventListener("click", function () {
 
 
 //Рендер карточки при добавлении
-const createCard = (name, link, likes) => {
+const createCard = (name, link, likes, owner) => {
+  const myId = userInfo.getUserInfo().id;
   const card = new Card(
     {
       name: name,
       link: link,
-      likes: likes
+      likes: likes,
+      owner: owner
     },
     "#template-element",
     openPopupImage
       );
-  return card.getView();
+      console.log (card);
+  return card.getView(myId);
 };
 
 popupWithFormAdd.setEventListeners();
@@ -96,6 +99,7 @@ const userInfo = new UserInfo({
   infoSelector: ".profile__profession",
 });
 
+
 function editProfilePopupOpen() {
   const userData = userInfo.getUserInfo();
   inputName.value = userData.name;
@@ -114,7 +118,7 @@ function editProfilePopupSubmit(inputValues) {
   editApiUser
     .editProfile(name, info)
     .then(() => {
-      userInfo.setUserInfo(name, info );
+      userInfo.setUserInfo(name, info);
       popupWithFormEdit.close();
     })
     .catch((error) => {
@@ -160,7 +164,7 @@ api
   .getAllCards()
   .then((cards) => {
     cards.forEach((card) => {
-      const cardElement = createCard(card.name, card.link, card.likes);
+      const cardElement = createCard(card.name, card.link, card.likes, card.owner._id);  
       section.addItem(cardElement);
     });
     section.renderItems();
@@ -177,11 +181,12 @@ const infoUser = {
     "Content-Type": "application/json",
   },
 };
+
 const apiUser = new Api(infoUser);
 apiUser
   .getInfoUser()
   .then((userData) => {
-    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserInfo(userData.name, userData.about, userData._id);
   })
   .catch((error) => {
     console.log(error);

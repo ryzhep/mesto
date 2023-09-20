@@ -5,14 +5,16 @@ buttonDeletePopup.addEventListener("click", function () {
   popupWithComfirm.close();
 });
 
+
+
 export class Card {
-  constructor({name, link, likes}, templateSelector, handleCardClick) {
+  constructor({name, link, likes, owner}, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
+    this._owner = owner;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._likes = likes.length;//получить количество лайков
-
   }
 
   _handleImageClick() {
@@ -41,18 +43,21 @@ export class Card {
     this._usersLikesElement.textContent = this._likes;
   }
 
-  getView() {
+  getView(userId) {
     this._element = this._getTemplate();
     this._setData();
     this._setEventListeners();
+    if (this._owner !== userId) {
+      this._cardDeleteButton.remove();
+    }
     return this._element;
   }
+  
 
   //метод _setEventListeners добавляет все обработчики в одном месте. В нём события клика по двум элементам:
   _setEventListeners() {
     //удаляет при клике
     this._cardDeleteButton.addEventListener("click", () => {
-
       this._deleteCard();
     });
 
@@ -64,6 +69,7 @@ export class Card {
     this._cardImage.addEventListener('click', () => { 
       this._handleImageClick() 
     });
+
   }
 
   //удаление карточки
