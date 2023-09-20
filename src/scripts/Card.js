@@ -76,6 +76,7 @@ export class Card {
     this._cardDeleteButton.addEventListener("click", () => {
       this._removeButtonClick(this);
     });
+    
   }
 
   //удаление карточки

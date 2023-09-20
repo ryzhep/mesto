@@ -18,7 +18,6 @@ import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { Api } from "../scripts/Api.js";
 import { PopupDeleteCard } from "../scripts/PopupDeleteCard.js";
-import {buttonDeletePopup} from "../utils/constants.js";
 
 
 
