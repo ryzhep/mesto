@@ -1,26 +1,28 @@
-import { PopupDeleteCard } from "../scripts/PopupDeleteCard.js";
-import {buttonDeletePopup} from "../utils/constants.js";
-const popupWithComfirm = new PopupDeleteCard("#deletecard-popup",);
-buttonDeletePopup.addEventListener("click", function () {
-  popupWithComfirm.close();
-});
-
-
-
 export class Card {
-  constructor({name, link, likes, owner}, templateSelector, handleCardClick) {
+  constructor(
+    { name, link, likes, owner, id, removeButtonClick, handleLikeIcon},
+    templateSelector,
+    handleCardClick
+  ) {
     this._name = name;
     this._link = link;
     this._owner = owner;
+    this._id = id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._likes = likes.length;//получить количество лайков
+    this._removeButtonClick = removeButtonClick;
+    this.__handleLikeIcon = handleLikeIcon;
+    this._likes = likes.length; //получить количество лайков
+    //для отслеживания, лайкнул ли текущий пользователь карточку или нет:
   }
 
   _handleImageClick() {
     this._handleCardClick(this._link, this._name, this._likes);
   }
-  
+
+  changeStatus() {
+    this._isLiked = !this._isLiked;
+  }
   /* Приватный метод найдёт template-элемент с id template-element, извлечёт его содержимое, в содержимом найдёт элемент с классом element,
 клонирует его, вернёт клонированный элемент.*/
   _getTemplate() {
@@ -39,7 +41,9 @@ export class Card {
     this._cardImage.alt = this._name;
     this._cardDeleteButton = this._element.querySelector(".element__delete");
     this._cardLike = this._element.querySelector(".element__like");
-    this._usersLikesElement = this._element.querySelector('.element__likes-counter');
+    this._usersLikesElement = this._element.querySelector(
+      ".element__likes-counter"
+    );
     this._usersLikesElement.textContent = this._likes;
   }
 
@@ -52,7 +56,6 @@ export class Card {
     }
     return this._element;
   }
-  
 
   //метод _setEventListeners добавляет все обработчики в одном месте. В нём события клика по двум элементам:
   _setEventListeners() {
@@ -62,27 +65,27 @@ export class Card {
     });
 
     //ставит лайки при клике
-    this._cardLike.addEventListener("click", () => {
-      this._handleLikeIcon();
+    this._cardLike.addEventListener("click", (evt) => {
+      this._handleLikeIcon(evt);
     });
 
-    this._cardImage.addEventListener('click', () => { 
-      this._handleImageClick() 
+    this._cardImage.addEventListener("click", () => {
+      this._handleImageClick();
     });
 
+    this._cardDeleteButton.addEventListener("click", () => {
+      this._removeButtonClick(this);
+    });
   }
 
   //удаление карточки
   _deleteCard() {
-    popupWithComfirm.open();
-    this._element.remove(); //удаление из разметки
-    this._element = null; // удаление из памяти
+    this._element.remove();
+    this._element = null;
   }
 
-
-    //cтавить лайки
-    _handleLikeIcon() {
-      this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
-    }   
+  //cтавить лайки
+  _handleLikeIcon() {
+    this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
+  }
 }
-

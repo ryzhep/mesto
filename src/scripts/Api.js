@@ -33,30 +33,50 @@ export class Api {
   }
 
   //Редактирование профиля
-  editProfile(name, about){
+  editProfile(name, about) {
     return this._sendRequest(`${this._url}`, {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-            name: name,
-            about: about
-        })
-      });
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    });
   }
 
   //Добавление новой карточки
-  apiAddNewCard(name, link){
+  apiAddNewCard(name, link) {
     return this._sendRequest(`${this._url}`, {
-        method: "POST",
-        headers: this._headers,
-        body: JSON.stringify({
-            name: name,
-            link: link,
-        })
-      });
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    });
   }
-  
-  }
-  
 
- 
+  // удаление карточки
+  deleteCard(cardId) {
+    return this._sendRequest(`${this._url}/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
+
+  //лайкнуть карточку
+  likeCard(cardId) {
+    return this._sendRequest(`${this._url}/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
+  
+  //убрать лайк
+  likeDelete(cardId) {
+    return this._sendRequest(`${this._url}/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
+}

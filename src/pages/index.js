@@ -17,6 +17,10 @@ import { PopupWithImage } from "../scripts/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/PopupWithForm.js";
 import { UserInfo } from "../scripts/UserInfo.js";
 import { Api } from "../scripts/Api.js";
+import { PopupDeleteCard } from "../scripts/PopupDeleteCard.js";
+import {buttonDeletePopup} from "../utils/constants.js";
+
+
 
 //Валидация
 const formProfileValid = new FormValidator(validationConfig, popupEditProfile);
@@ -50,21 +54,28 @@ buttonOpenAddCardPopup.addEventListener("click", function () {
 
 
 //Рендер карточки при добавлении
-const createCard = (name, link, likes, owner) => {
+const createCard = (name, link, likes, owner, id) => {
   const myId = userInfo.getUserInfo().id;
   const card = new Card(
     {
       name: name,
       link: link,
       likes: likes,
-      owner: owner
+      owner: owner,
+      id: id,
+      removeButtonClick: card => {
+        popupWithComfirm.open(card);
+      }
     },
     "#template-element",
-    openPopupImage
+    openPopupImage,
       );
-      console.log (card);
+      console.log(card);
   return card.getView(myId);
+
 };
+console.log (createCard);
+
 
 popupWithFormAdd.setEventListeners();
 
@@ -125,6 +136,8 @@ function editProfilePopupSubmit(inputValues) {
       console.log(error);
     });
 }
+
+
 /*
 //Рендер карточки при добавлении
 const renderTodoCard = () => {
@@ -164,7 +177,7 @@ api
   .getAllCards()
   .then((cards) => {
     cards.forEach((card) => {
-      const cardElement = createCard(card.name, card.link, card.likes, card.owner._id);  
+      const cardElement = createCard(card.name, card.link, card.likes, card.owner._id, card._id);  
       section.addItem(cardElement);
     });
     section.renderItems();
@@ -194,6 +207,20 @@ apiUser
 
 //Редактирование профиля
 const editApiUser = new Api(infoUser);
+
+  //удаление карточки
+const popupWithComfirm = new PopupDeleteCard("#deletecard-popup",(evt, card) => {
+  evt.preventDefault();
+  api
+    .deleteCard(card._id)
+    .then(() => {
+      popupWithComfirm.close();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+popupWithComfirm.setEventListeners();
 
 
 
