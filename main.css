@@ -20,13 +20,14 @@
 .element__like{background-color:transparent;background-image:url(images/like.87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:0;cursor:pointer;min-height:19px;min-width:22px;-o-object-fit:cover;object-fit:cover;opacity:1}.element__like:hover{opacity:.5}
 .element__like_active{background-image:url(images/Union.fe17a515669479b1e649.svg);opacity:1}
 .element__delete{background-color:transparent;background-image:url(images/Group.96f3e8182c3a9915dfee.png);background-repeat:no-repeat;border:0;cursor:pointer;margin-left:245px;margin-top:19px;min-height:20px;min-width:20px;position:absolute}
+.element__delete_visible{display:block}
 .element__like-elements{align-content:center;display:flex;flex-direction:column;justify-content:center;margin:0;padding:0;width:22px}
 .element__likes-counter{color:#000;font-size:13px;font-weight:400;line-height:normal;margin:auto;max-height:13px;padding:0;position:relative;text-align:center;width:10px}
 .footer{color:#545454;font-size:18px;font-style:normal;font-weight:400;line-height:1.2;margin:72px auto 60px;max-width:880px}@media screen and (max-width:768px){.footer{max-width:730px}}@media screen and (max-width:425px){.footer{font-size:14px;margin:48px auto 36px;max-width:282px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;transition:visibility 0s,opacity .5s linear;visibility:hidden}
-.popup__container{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);max-width:427px;min-height:340px;position:relative}@media screen and (max-width:767px){.popup__container{margin:0 19px;min-width:282px}}
+.popup__container{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);max-width:427px;position:relative}@media screen and (max-width:767px){.popup__container{margin:0 19px;min-width:282px}}
 .popup__close-button{background:url(images/Close_Icon.2ceb783afbab75916ddc.svg);background-size:30px 30px;border:0;cursor:pointer;height:30px;margin:0;padding:0;position:absolute;right:-40px;top:-40px;width:30px}.popup__close-button:hover{opacity:.6}@media screen and (max-width:767px){.popup__close-button{background-size:20px 20px;height:20px;right:0;top:-39px;width:20px}}
-.popup__form{box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-around;min-height:359px;min-width:430px;padding:34px 35px}@media screen and (max-width:767px){.popup__form{min-width:0;padding:25px 22px}}
+.popup__form{box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-around;min-width:430px;padding:34px 35px}@media screen and (max-width:767px){.popup__form{min-width:0;padding:25px 22px}}
 .popup_opened{display:flex;opacity:1;visibility:visible}
 .popup__title{font-size:24px;font-style:normal;font-weight:900;line-height:1.2;margin:0;padding:0}@media screen and (max-width:425px){.popup__title{font-size:18px;padding-bottom:52px}}
 .popup__input{all:unset;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-weight:400;line-height:1.2;margin-top:19px;padding-bottom:13px;padding-top:10px}
@@ -35,6 +36,7 @@
 .popup__container_image{background-color:transparent}
 .popup__title-image{color:#fff;font-size:12px;font-style:normal;font-weight:400;line-height:15px;margin:10px 0 0;padding:0}
 .popup__input-error{color:red;font-size:12px;font-weight:400;line-height:15px;margin:0;min-height:2em;opacity:1;padding:0}
+.popup__submit-button{background:#000;border:none;border-radius:2px;color:#fff;cursor:pointer;font-size:18px;font-weight:400;height:50px;line-height:22px;margin:48px 0 0;padding:0;text-align:center;width:358px}.popup__submit-button:hover{opacity:.8;transition:opacity .5s}@media screen and (max-width:426px){.popup__submit-button{font-size:14px;line-height:17px;margin:45px 0 0;width:238px}}
 .popup__input_type_error{border-bottom:1px solid red}
 .popup__button_disabled{background:#fff;border:1px solid #e5e5e5;color:#e5e5e5}
 .profile__add-icon{min-width:22px}@media screen and (max-width:756px){.profile__add-icon{max-height:16px;max-width:16px}}
