@@ -43,6 +43,29 @@ export class Api {
       }),
     });
   }
+ //Редактирование аватара
+ newAvatar(avatar) {
+    return this._sendRequest(`${this._url}/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatar
+      }),
+    });
+  }
+
+// Получить текущий аватар
+setAvatar(avatar) {
+    return this._sendRequest(`${this._url}/avatar`, {
+        method: "GET",
+        headers: this._headers,
+        body: JSON.stringify({
+            avatar: avatar
+          }),
+      });
+      
+    }
+
 
   //Добавление новой карточки
   apiAddNewCard(name, link) {
@@ -71,7 +94,7 @@ export class Api {
       headers: this._headers,
     });
   }
-  
+
   //убрать лайк
   likeDelete(cardId) {
     return this._sendRequest(`${this._url}/${cardId}/likes`, {

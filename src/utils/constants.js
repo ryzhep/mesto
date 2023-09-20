@@ -48,8 +48,10 @@ export const buttonCloseEditProfilePopup = document.querySelector("#close-edit-f
 export const buttonCloseImagePopup = document.querySelector("#close-image-form");
 export const popupEditProfile = document.querySelector("#edit-popup");
 export const popupAddCard = document.querySelector("#newcard-popup");
+export const popupAvatar = document.querySelector("#avatar-popup");
 export const inputName = document.querySelector('input[name="name"]');
 export const inputDescription = document.querySelector('input[name="description"]');
+export const buttonOpenProfileAvatar = document.querySelector('.profile__avatar');
 
 
 
