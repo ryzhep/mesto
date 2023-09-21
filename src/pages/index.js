@@ -11,8 +11,10 @@ import {
   popupAddCard,
   inputName,
   inputDescription,
-  popupAvatar,
-  buttonOpenProfileAvatar
+  buttonCloseAvatarPopup,
+  buttonOpenProfileAvatar,
+  buttonOpenAvatarPopup,
+  inputAvatarProfile
 } from "../utils/constants.js";
 import { Section } from "../scripts/Section.js";
 import { PopupWithImage } from "../scripts/PopupWithImage.js";
@@ -113,6 +115,7 @@ buttonOpenEditProfilePopup.addEventListener("click", editProfilePopupOpen);
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   infoSelector: ".profile__profession",
+  profileAvatar: ".profile__avatar"
 });
 
 
@@ -130,7 +133,6 @@ function editProfilePopupSubmit(inputValues) {
   const info = inputValues["description"];
  
   popupWithFormEdit.close();
-
   editApiUser
     .editProfile(name, info)
     .then(() => {
@@ -193,7 +195,7 @@ api
 
 
 const infoUser = {
-  url: "https://nomoreparties.co/v1/cohort-75/users/me ",
+  url: "https://nomoreparties.co/v1/cohort-75/users/me",
   headers: {
     authorization: "9e1ba490-d05f-4831-95ed-e11f8659a9e1",
     "Content-Type": "application/json",
@@ -205,14 +207,43 @@ apiUser
   .getInfoUser()
   .then((userData) => {
     userInfo.setUserInfo(userData.name, userData.about, userData._id);
+    userInfo.setUserAvatar(userData.avatar);
   })
   .catch((error) => {
     console.log(error);
   });
 
 //Редактирование профиля
-
 const editApiUser = new Api(infoUser);
+
+buttonOpenAvatarPopup.addEventListener("click", editAvatarPopupOpen);
+
+function editAvatarPopupOpen() {
+userInfo.getUserInfo();
+
+  popupEditAvatar.open();
+}
+const popupEditAvatar = new PopupWithForm('#avatar-popup', editAvatarPopupSubmit);
+function editAvatarPopupSubmit(inputValue) {
+  const avatar = inputValue["inputAvatar"];
+
+  popupEditAvatar.close();
+  editApiUser
+    .newAvatar(avatar)
+    .then((userData) => {
+      userInfo.setUserAvatar(userData.avatar);
+      popupEditAvatar.close();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+buttonCloseAvatarPopup.addEventListener("click", function () {
+  popupEditAvatar.close();
+});
+
+popupEditAvatar.setEventListeners();
 
   //удаление карточки
 const popupWithComfirm = new PopupDeleteCard("#deletecard-popup",(evt, card) => {
@@ -235,16 +266,4 @@ function openPopupAvatar() {
 }
 buttonOpenProfileAvatar.addEventListener('click', openPopupAvatar);
 
-const popupEditAvatar = new PopupWithForm('#avatar-popup', (evt, fields) => {
-  evt.preventDefault();
-  apiUser
-    .newAvatar(fields['inputAvatar'])
-    .then(result => {
-      userInfo.setAvatar(result.avatar);
-      popupEditAvatar.close();
-    })
-    .catch(err => {
-      console.log(err);
-    })
-});
-popupEditAvatar.setEventListeners();
+

@@ -44,13 +44,16 @@ export const validationConfig = {
 
 export const buttonOpenEditProfilePopup = document.querySelector(".profile__open-popup");
 export const buttonOpenAddCardPopup = document.querySelector(".profile__add");
+export const buttonOpenAvatarPopup = document.querySelector(".profile__avatar");
 export const buttonCloseEditProfilePopup = document.querySelector("#close-edit-form");
+export const buttonCloseAvatarPopup = document.querySelector("#close-avatar-form");
 export const buttonCloseImagePopup = document.querySelector("#close-image-form");
 export const popupEditProfile = document.querySelector("#edit-popup");
 export const popupAddCard = document.querySelector("#newcard-popup");
 export const popupAvatar = document.querySelector("#avatar-popup");
 export const inputName = document.querySelector('input[name="name"]');
 export const inputDescription = document.querySelector('input[name="description"]');
+export const inputAvatarProfile = document.querySelector('input[name="inputAvatar"]');
 export const buttonOpenProfileAvatar = document.querySelector('.profile__avatar');
 
 

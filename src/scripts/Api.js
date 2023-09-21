@@ -43,6 +43,7 @@ export class Api {
       }),
     });
   }
+
  //Редактирование аватара
  newAvatar(avatar) {
     return this._sendRequest(`${this._url}/avatar`, {
@@ -54,17 +55,6 @@ export class Api {
     });
   }
 
-// Получить текущий аватар
-setAvatar(avatar) {
-    return this._sendRequest(`${this._url}/avatar`, {
-        method: "GET",
-        headers: this._headers,
-        body: JSON.stringify({
-            avatar: avatar
-          }),
-      });
-      
-    }
 
 
   //Добавление новой карточки
