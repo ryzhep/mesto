@@ -44,18 +44,16 @@ export class Api {
     });
   }
 
- //Редактирование аватара
- newAvatar(avatar) {
+  //Редактирование аватара
+  newAvatar(avatar) {
     return this._sendRequest(`${this._url}/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatar
+        avatar: avatar,
       }),
     });
   }
-
-
 
   //Добавление новой карточки
   apiAddNewCard(name, link) {

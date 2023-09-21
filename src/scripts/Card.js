@@ -1,6 +1,15 @@
 export class Card {
   constructor(
-    { name, link, likes, owner, id, removeButtonClick, handleLikeIcon,handleClickLike},
+    {
+      name,
+      link,
+      likes,
+      owner,
+      id,
+      removeButtonClick,
+      handleLikeIcon,
+      handleClickLike,
+    },
     templateSelector,
     handleCardClick
   ) {
@@ -18,7 +27,7 @@ export class Card {
     //для отслеживания, лайкнул ли текущий пользователь карточку или нет:
   }
 
-//изменение статуса лайка
+  //изменение статуса лайка
   changeStatus() {
     this._isLiked = !this._isLiked;
   }
@@ -58,7 +67,7 @@ export class Card {
       this._cardDeleteButton.remove();
     }
     if (this._isLiked) {
-      this._cardLike.classList.add('element__like-element__like_active');
+      this._cardLike.classList.add("element__like-element__like_active");
     }
     return this._element;
   }
@@ -67,7 +76,7 @@ export class Card {
     this._likes = sumLikes;
     this._usersLikesElement.textContent = this._likes;
   }
-  
+
   //метод _setEventListeners добавляет все обработчики в одном месте. В нём события клика по двум элементам:
   _setEventListeners() {
     //удаляет при клике
@@ -87,7 +96,6 @@ export class Card {
     this._cardDeleteButton.addEventListener("click", () => {
       this._removeButtonClick(this);
     });
-    
   }
 
   //удаление карточки
