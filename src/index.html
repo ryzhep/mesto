@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Место</title>
 </head>
 
@@ -14,7 +13,7 @@
   </header>
   <main class="content">
     <section class="profile">
-      <a alt="Аватар профиля" class="profile__avatar" /></a>
+      <a alt="Аватар профиля" class="profile__avatar" ></a>
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button class="profile__open-popup" type="button">
@@ -42,13 +41,11 @@
         <input id="profession-input" type="text" class="popup__input" name="description" placeholder="Вид деятельности"
           required minlength="2" maxlength="200" />
         <span class="popup__input-error profession-input-error"></span>
-        <button type="submit" class="popup__button">Сохранить</button>
+        <button type="submit" class="popup__button">Сохранение...</button>
       </form>
 
       <button id="close-edit-form" class="popup__close-button" type="button"></button>
     </div>
-  </div>
-
   </div>
   <div id="image-popup" class="popup">
     <div class="popup__container popup__container_image">
@@ -75,7 +72,7 @@
         <input id="popup__newAvatar" name="inputAvatar" type="url" placeholder="URL" class="popup__input" required />
         <button id="editavatar-form" class="popup__close-button" type="button"></button>
         <span class="popup__input-error image-link-error"></span>
-        <button type="submit" class="popup__button">Сохранить</button>
+        <button type="submit" class="popup__button">Сохранение...</button>
       </form>
       <button id="close-avatar-form" class="popup__close-button" type="button"></button>
     </div>
@@ -90,11 +87,12 @@
         <span class="popup__input-error name-card-error"></span>
         <input id="image-link" type="url" class="popup__input" name="link" placeholder="Ссылка на картинку" required />
         <span class="popup__input-error image-link-error"></span>
-        <button type="submit" class="popup__button">Создать</button>
+        <button type="submit" class="popup__button">Создание...</button>
       </form>
 
       <button id="close-newcard-form" class="popup__close-button" type="button"></button>
     </div>
+  </div>
     
   <template id="template-element">
     <article class="element">

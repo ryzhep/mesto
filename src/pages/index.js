@@ -32,9 +32,6 @@ formProfileValid.enableValidation();
 const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
 
-//const formAvatarValid = new FormValidator(validationConfig, popupAvatar);
-//formAvatarValid.enableValidation();
-
 
 //--ПОПАП СОЗДАНИЯ КАРТОЧКИ
 const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
@@ -72,8 +69,30 @@ const createCard = (name, link, likes, owner, id) => {
       id: id,
       removeButtonClick: card => {
         popupWithComfirm.open(card);
-      }
-    },
+      },
+    handleClickLike: () => {
+      if (!card._isLiked) {
+        api
+          .likeCard(card._id)
+          .then(res => {
+            card.setLikes(res.likes.length);
+            card.changeStatus();
+          })
+          .catch(err => {
+            console.log(err);
+          });}
+          else {
+            api
+              .likeDelete(card._id)
+              .then(res => {
+                card.setLikes(res.likes.length);
+                card.changeStatus();
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          }
+      },},
     "#template-element",
     openPopupImage,
       );
@@ -144,17 +163,6 @@ function editProfilePopupSubmit(inputValues) {
     });
 }
 
-
-/*
-//Рендер карточки при добавлении
-const renderTodoCard = () => {
-  initialCards.forEach((card) => {
-    const cardElement = createCard(card.name, card.link);
-    section.addItem(cardElement);
-  });
-  section.renderItems();
-};
-*/
 // все карточки
 const section = new Section(
   {
@@ -164,8 +172,6 @@ const section = new Section(
   ".elements"
 );
 
-//section.renderItems();
-//renderTodoCard();
 
 //Подключение  к АПИы
 
