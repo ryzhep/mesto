@@ -190,7 +190,8 @@ const api = new Api(cardsApi);
 api
   .getAllCards()
   .then((cards) => {
-    cards.forEach((card) => {
+    const reversedCards = cards.reverse();
+    reversedCards.forEach((card) => {
       const cardElement = createCard(
         card.name,
         card.link,
@@ -205,6 +206,8 @@ api
   .catch((error) => {
     console.log(error);
   });
+
+  
 
 
 api
