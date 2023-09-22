@@ -26,7 +26,6 @@ export default class Popup {
 
   _closePopupOverlay(event) {
     if (event.currentTarget === event.target) {
-      this._popup = document.querySelector(".popup_opened"); 
       this.close(); 
     } 
   }; 

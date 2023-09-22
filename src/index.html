@@ -65,12 +65,11 @@
     </div>
   </div>
   <!-- попап обновления картинки -->
-  <div id="avatar-popup" class="popup ">
+  <div id="avatar-popup" class="popup">
     <div class="popup__container">
       <form id="avatar-form" class="popup__form" name="avatar" novalidate>
         <h2 class="popup__title">Обновить аватар</h2>
-        <input id="popup__newAvatar" name="inputAvatar" type="url" placeholder="URL" class="popup__input" required />
-        <button id="editavatar-form" class="popup__close-button" type="button"></button>
+        <input id="image-link" type="url" class="popup__input" name="link" placeholder="URL" required />
         <span class="popup__input-error image-link-error"></span>
         <button type="submit" class="popup__button">Сохранение...</button>
       </form>
@@ -89,7 +88,6 @@
         <span class="popup__input-error image-link-error"></span>
         <button type="submit" class="popup__button">Создание...</button>
       </form>
-
       <button id="close-newcard-form" class="popup__close-button" type="button"></button>
     </div>
   </div>

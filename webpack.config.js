@@ -15,7 +15,9 @@ filename: '[name].[hash].js',
 devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
-    }
+      
+    },
+    open: true
 },
 module:{
     rules:[

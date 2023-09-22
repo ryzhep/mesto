@@ -18,7 +18,7 @@ export class Api {
 
   // Все карточки
   getAllCards() {
-    return this._sendRequest(`${this._url}`, {
+    return this._sendRequest(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers,
     });
@@ -26,7 +26,7 @@ export class Api {
 
   //Загрузка информации о пользователе с сервера
   getInfoUser() {
-    return this._sendRequest(`${this._url}`, {
+    return this._sendRequest(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
     });
@@ -34,7 +34,7 @@ export class Api {
 
   //Редактирование профиля
   editProfile(name, about) {
-    return this._sendRequest(`${this._url}`, {
+    return this._sendRequest(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -46,7 +46,7 @@ export class Api {
 
   //Редактирование аватара
   newAvatar(avatar) {
-    return this._sendRequest(`${this._url}/avatar`, {
+    return this._sendRequest(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -57,7 +57,7 @@ export class Api {
 
   //Добавление новой карточки
   apiAddNewCard(name, link) {
-    return this._sendRequest(`${this._url}`, {
+    return this._sendRequest(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -69,7 +69,7 @@ export class Api {
 
   // удаление карточки
   deleteCard(cardId) {
-    return this._sendRequest(`${this._url}/${cardId}`, {
+    return this._sendRequest(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     });
@@ -77,7 +77,7 @@ export class Api {
 
   //лайкнуть карточку
   likeCard(cardId) {
-    return this._sendRequest(`${this._url}/${cardId}/likes`, {
+    return this._sendRequest(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     });
@@ -85,7 +85,7 @@ export class Api {
 
   //убрать лайк
   likeDelete(cardId) {
-    return this._sendRequest(`${this._url}/${cardId}/likes`, {
+    return this._sendRequest(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     });

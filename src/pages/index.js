@@ -11,6 +11,7 @@ import {
   popupAddCard,
   inputName,
   inputDescription,
+  popupNewAvatar,
   buttonCloseAvatarPopup,
   buttonOpenProfileAvatar,
   buttonOpenAvatarPopup,
@@ -29,6 +30,10 @@ formProfileValid.enableValidation();
 const formAddNewCardValid = new FormValidator(validationConfig, popupAddCard);
 formAddNewCardValid.enableValidation();
 
+const formEditAvatarValid = new FormValidator(validationConfig, popupNewAvatar);
+formEditAvatarValid.enableValidation();
+
+
 //--ПОПАП СОЗДАНИЯ КАРТОЧКИ
 const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
   const nameInput = values["name"];
@@ -44,7 +49,7 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
         data.likes.length,
         data.owner._id
       );
-      section.addItem(cardElement);
+      cardsContainer.addItem(cardElement);
       popupWithFormAdd.close();
     })
     .catch((error) => {
@@ -149,7 +154,7 @@ function editProfilePopupSubmit(inputValues) {
   const info = inputValues["description"];
 
   popupWithFormEdit.close();
-  editApiUser
+  api
     .editProfile(name, info)
     .then(() => {
       userInfo.setUserInfo(name, info);
@@ -161,7 +166,7 @@ function editProfilePopupSubmit(inputValues) {
 }
 
 // все карточки
-const section = new Section(
+const cardsContainer = new Section(
   {
     items: [],
     renderer: createCard,
@@ -173,7 +178,7 @@ const section = new Section(
 
 // Загрузка карточек с сервера
 const cardsApi = {
-  url: "https://mesto.nomoreparties.co/v1/cohort-75/cards",
+  url: "https://mesto.nomoreparties.co/v1/cohort-75",
   headers: {
     authorization: "9e1ba490-d05f-4831-95ed-e11f8659a9e1",
     "Content-Type": "application/json",
@@ -193,24 +198,16 @@ api
         card.owner._id,
         card._id
       );
-      section.addItem(cardElement);
+      cardsContainer.addItem(cardElement);
     });
-    section.renderItems();
+    cardsContainer.renderItems();
   })
   .catch((error) => {
     console.log(error);
   });
 
-const infoUser = {
-  url: "https://nomoreparties.co/v1/cohort-75/users/me",
-  headers: {
-    authorization: "9e1ba490-d05f-4831-95ed-e11f8659a9e1",
-    "Content-Type": "application/json",
-  },
-};
 
-const apiUser = new Api(infoUser);
-apiUser
+api
   .getInfoUser()
   .then((userData) => {
     userInfo.setUserInfo(userData.name, userData.about, userData._id);
@@ -221,13 +218,12 @@ apiUser
   });
 
 //Редактирование профиля
-const editApiUser = new Api(infoUser);
 
 buttonOpenAvatarPopup.addEventListener("click", editAvatarPopupOpen);
 
 function editAvatarPopupOpen() {
+  formEditAvatarValid.disableSubmitButton();
   userInfo.getUserInfo();
-
   popupEditAvatar.open();
 }
 const popupEditAvatar = new PopupWithForm(
@@ -235,10 +231,10 @@ const popupEditAvatar = new PopupWithForm(
   editAvatarPopupSubmit
 );
 function editAvatarPopupSubmit(inputValue) {
-  const avatar = inputValue["inputAvatar"];
+  const avatar = inputValue["link"];
 
   popupEditAvatar.close();
-  editApiUser
+  api
     .newAvatar(avatar)
     .then((userData) => {
       userInfo.setUserAvatar(userData.avatar);
