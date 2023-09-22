@@ -190,7 +190,7 @@ const api = new Api(cardsApi);
 api
   .getAllCards()
   .then((cards) => {
-    cards.forEach((card) => {
+    forEach((card) => {
       const cardElement = createCard(
         card.name,
         card.link,
