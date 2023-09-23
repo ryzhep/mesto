@@ -194,9 +194,10 @@ const cardsApi = {
 
 const api = new Api(cardsApi);
 
-api
-  .getAllCards()
-  .then((cards) => {
+Promise.all([api.getInfoUser(), api.getAllCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData.name, userData.about, userData._id);
+    userInfo.setUserAvatar(userData.avatar);
     const reversedCards = cards.reverse();
     reversedCards.forEach((card) => {
       const cardElement = createCard(
@@ -204,25 +205,18 @@ api
         card.link,
         card.likes,
         card.owner._id,
-        card._id
+        card._id,
+        userData._id // передаем id текущего пользователя в функцию createCard
       );
       cardsContainer.addItem(cardElement);
     });
     cardsContainer.renderItems();
+
   })
   .catch((error) => {
     console.log(error);
   });
 
-api
-  .getInfoUser()
-  .then((userData) => {
-    userInfo.setUserInfo(userData.name, userData.about, userData._id);
-    userInfo.setUserAvatar(userData.avatar);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
 //Редактирование профиля
 
