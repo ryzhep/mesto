@@ -22,9 +22,9 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._removeButtonClick = removeButtonClick;
     this._handleClickLike = handleClickLike;
-    this.__handleLikeIcon = handleLikeIcon;
+    this._handleLikeIcon = handleLikeIcon;
     this._likes = likes.length; //получить количество лайков
-    //для отслеживания, лайкнул ли текущий пользователь карточку или нет:
+    
   }
 
   //изменение статуса лайка
@@ -58,43 +58,42 @@ export class Card {
     );
     this._usersLikesElement.textContent = this._likes;
   }
-
-  getView(userId) {
-    this._element = this._getTemplate();
-    this._setData();
-    this._setEventListeners();
-    if (this._owner !== userId) {
-      this._cardDeleteButton.remove();
-    }
-    if (this._isLiked) {
-      this._cardLike.classList.add("element__like-element__like_active");
-    }
-    return this._element;
-  }
-
   setLikes(sumLikes) {
     this._likes = sumLikes;
     this._usersLikesElement.textContent = this._likes;
   }
+  getView(userId, likes) {
+    this._element = this._getTemplate();
+    this._setData();
+
+    if (this._owner !== userId) {
+      this._cardDeleteButton.remove();
+    }
+    this._likes = likes;
+    if (this._isLiked) {
+      this._cardLike.classList.add("element__like_active");
+    } 
+    this._setEventListeners();
+    return this._element;
+  }
+
+
 
   //метод _setEventListeners добавляет все обработчики в одном месте. В нём события клика по двум элементам:
   _setEventListeners() {
-    //удаляет при клике
-    this._cardDeleteButton.addEventListener("click", () => {
-      this._deleteCard();
-    });
 
     //ставит лайки при клике
-    this._cardLike.addEventListener("click", (evt) => {
-      this._handleLikeIcon(evt);
+    this._cardLike.addEventListener("click", () => {
+      this._likeCard();
     });
 
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick();
     });
-
+    //удаляет при клике
     this._cardDeleteButton.addEventListener("click", () => {
       this._removeButtonClick(this);
+      this._deleteCard();
     });
   }
 
@@ -106,7 +105,7 @@ export class Card {
 
   //cтавить лайки
 
-  _handleLikeIcon() {
+  _likeCard() {
     this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
     this._handleClickLike();
   }

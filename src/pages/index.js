@@ -38,7 +38,7 @@ formEditAvatarValid.enableValidation();
 const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
   const nameInput = values["name"];
   const urlInput = values["link"];
-
+  popupWithFormAdd.renderLoading(true);
   //апи пост на добавление карточки
   api
     .apiAddNewCard(nameInput, urlInput)
@@ -46,7 +46,7 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
       const cardElement = createCard(
         data.name,
         data.link,
-        data.likes.length,
+        data.likes,
         data.owner._id
       );
       cardsContainer.addItem(cardElement);
@@ -54,6 +54,9 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
+      popupWithFormAdd.renderLoading(true);
     });
 });
 
@@ -74,6 +77,9 @@ const createCard = (name, link, likes, owner, id) => {
       id: id,
       removeButtonClick: (card) => {
         popupWithComfirm.open(card);
+      },
+      handleLikeIcon: () => {
+        popupWithComfirm.open(name, link, likes);
       },
       handleClickLike: () => {
         if (!card._isLiked) {
@@ -98,14 +104,15 @@ const createCard = (name, link, likes, owner, id) => {
             });
         }
       },
+      
     },
     "#template-element",
     openPopupImage
   );
   console.log(card);
-  return card.getView(myId);
+  return card.getView(myId, likes);
 };
-console.log(createCard);
+
 
 popupWithFormAdd.setEventListeners();
 
@@ -152,8 +159,7 @@ popupWithFormEdit.setEventListeners();
 function editProfilePopupSubmit(inputValues) {
   const name = inputValues["name"];
   const info = inputValues["description"];
-
-  popupWithFormEdit.close();
+  popupWithFormEdit.renderLoading(true);
   api
     .editProfile(name, info)
     .then(() => {
@@ -162,7 +168,11 @@ function editProfilePopupSubmit(inputValues) {
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
+      popupWithFormEdit.renderLoading(true);
     });
+
 }
 
 // все карточки
