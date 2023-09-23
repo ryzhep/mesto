@@ -9,11 +9,19 @@ export class Card {
       removeButtonClick,
       handleLikeIcon,
       handleClickLike,
+      userId
     },
     templateSelector,
-    handleCardClick
+    handleCardClick,
+    
   ) {
     this._isLiked = false;
+    likes.forEach(obj => {
+      if (obj._id === userId) {
+        this._isLiked = true;
+      }
+    });
+
     this._name = name;
     this._link = link;
     this._owner = owner;
@@ -104,7 +112,6 @@ export class Card {
   }
 
   //cтавить лайки
-
   _likeCard() {
     this._cardLike.classList.toggle("element__like_active"); // обращаемся к свойству toggle
     this._handleClickLike();

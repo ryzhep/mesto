@@ -56,7 +56,7 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
       console.log(error);
     })
     .finally(() => {
-      popupWithFormAdd.renderLoading(true);
+      popupWithFormAdd.renderLoading(false);
     });
 });
 
@@ -78,6 +78,7 @@ const createCard = (name, link, likes, owner, id) => {
       removeButtonClick: (card) => {
         popupWithComfirm.open(card);
       },
+      userId: myId,
       handleLikeIcon: () => {
         popupWithComfirm.open(name, link, likes);
       },
@@ -170,7 +171,7 @@ function editProfilePopupSubmit(inputValues) {
       console.log(error);
     })
     .finally(() => {
-      popupWithFormEdit.renderLoading(true);
+      popupWithFormEdit.renderLoading(false);
     });
 
 }
@@ -245,8 +246,7 @@ const popupEditAvatar = new PopupWithForm(
 );
 function editAvatarPopupSubmit(inputValue) {
   const avatar = inputValue["link"];
-
-  popupEditAvatar.close();
+  popupEditAvatar.renderLoading(true);
   api
     .newAvatar(avatar)
     .then((userData) => {
@@ -255,6 +255,9 @@ function editAvatarPopupSubmit(inputValue) {
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
+      popupEditAvatar.renderLoading(false);
     });
 }
 
