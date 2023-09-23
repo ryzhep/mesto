@@ -9,14 +9,13 @@ export class Card {
       removeButtonClick,
       handleLikeIcon,
       handleClickLike,
-      userId
+      userId,
     },
     templateSelector,
-    handleCardClick,
-    
+    handleCardClick
   ) {
     this._isLiked = false;
-    likes.forEach(obj => {
+    likes.forEach((obj) => {
       if (obj._id === userId) {
         this._isLiked = true;
       }
@@ -32,7 +31,6 @@ export class Card {
     this._handleClickLike = handleClickLike;
     this._handleLikeIcon = handleLikeIcon;
     this._likes = likes.length; //получить количество лайков
-    
   }
 
   //изменение статуса лайка
@@ -80,16 +78,13 @@ export class Card {
     this._likes = likes;
     if (this._isLiked) {
       this._cardLike.classList.add("element__like_active");
-    } 
+    }
     this._setEventListeners();
     return this._element;
   }
 
-
-
   //метод _setEventListeners добавляет все обработчики в одном месте. В нём события клика по двум элементам:
   _setEventListeners() {
-
     //ставит лайки при клике
     this._cardLike.addEventListener("click", () => {
       this._likeCard();

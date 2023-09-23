@@ -33,7 +33,6 @@ formAddNewCardValid.enableValidation();
 const formEditAvatarValid = new FormValidator(validationConfig, popupNewAvatar);
 formEditAvatarValid.enableValidation();
 
-
 //--ПОПАП СОЗДАНИЯ КАРТОЧКИ
 const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
   const nameInput = values["name"];
@@ -47,7 +46,8 @@ const popupWithFormAdd = new PopupWithForm("#newcard-popup", (values) => {
         data.name,
         data.link,
         data.likes,
-        data.owner._id
+        data.owner._id,
+        data._id
       );
       cardsContainer.addItem(cardElement);
       popupWithFormAdd.close();
@@ -105,15 +105,12 @@ const createCard = (name, link, likes, owner, id) => {
             });
         }
       },
-      
     },
     "#template-element",
     openPopupImage
   );
-  console.log(card);
   return card.getView(myId, likes);
 };
-
 
 popupWithFormAdd.setEventListeners();
 
@@ -173,7 +170,6 @@ function editProfilePopupSubmit(inputValues) {
     .finally(() => {
       popupWithFormEdit.renderLoading(false);
     });
-
 }
 
 // все карточки
@@ -217,9 +213,6 @@ api
   .catch((error) => {
     console.log(error);
   });
-
-  
-
 
 api
   .getInfoUser()
