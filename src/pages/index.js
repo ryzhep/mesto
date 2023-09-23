@@ -245,7 +245,7 @@ const popupEditAvatar = new PopupWithForm(
   editAvatarPopupSubmit
 );
 function editAvatarPopupSubmit(inputValue) {
-  const avatar = inputValue["link"];
+  const avatar = inputValue["link-avatar"];
   popupEditAvatar.renderLoading(true);
   api
     .newAvatar(avatar)
